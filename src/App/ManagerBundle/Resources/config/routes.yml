@@ -1,39 +1,6 @@
-app_manager_product:
-    type: rest
-    prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\ProductController"
-    name_prefix:  api_1_
 
 app_manager_broker:
     type: rest
     prefix: /v1
     resource: "App\ManagerBundle\Controller\API\\BrokerController"
     name_prefix:  api_1_
-
-app_manager_split:
-    type: rest
-    prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\SplitController"
-    name_prefix:  api_1_
-
-app_manager_rawlead:
-    type: rest
-    prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\RawleadController"
-    name_prefix:  api_1_
-
-app_manager_strategy:
-    type: rest
-    prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\StrategyController"
-    name_prefix:  api_1_
-
-app_manager_sync:
-    type: rest
-    prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\SyncController"
-    name_prefix:  api_1_
-
-
-app_manager_default:
-    resource: "App\ManagerBundle\Controller\DefaultController"
