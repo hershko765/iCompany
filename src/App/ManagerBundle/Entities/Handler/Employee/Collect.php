@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Broker;
+namespace App\ManagerBundle\Entities\Handler\Employee;
 
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Interfaces\Handler;
@@ -33,7 +33,7 @@ class Collect extends HandlerManager {
 
 	public function execute()
 	{
-		return $this->em->getRepository('AppManagerBundle:Model\Broker')
+		return $this->em->getRepository('AppManagerBundle:Model\Employee')
 			->collect($this->filters, $this->paging, $this->settings);
 	}
 }

@@ -21,14 +21,14 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 
 
-class BrokerController extends Base\Controller {
+class EmployeeController extends Base\Controller {
 
 	/**
-	 * Get single Broker,
+	 * Get single Employee,
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Gets a Page for a given id",
+	 *   description = "Get ",
 	 *   output = "Acme\BlogBundle\Entity\Page",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
@@ -36,7 +36,7 @@ class BrokerController extends Base\Controller {
 	 *   }
 	 * )
 	 *
-	 * @Annotations\View(templateVar="Broker")
+	 * @Annotations\View(templateVar="Employee")
 	 *
 	 * @param int     $id      the page id
 	 *
@@ -44,33 +44,33 @@ class BrokerController extends Base\Controller {
 	 *
 	 * @throws NotFoundHttpException when page not exist
 	 */
-	public function getBrokerAction($id)
+	public function getEmployeeAction($id)
 	{
-		$handler = $this->getHandler('Broker', 'get');
+		$handler = $this->getHandler('Employee', 'get');
 
 		return $handler->setID($id)->execute();
 	}
 
 	/**
-	 * Get single Broker,
+	 * Get single Employee,
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Get an Broker by given ID",
+	 *   description = "Get an Employee by given ID",
 	 *   filters={
-	 *      {"name"="Broker", "dataType"="string", "description"="search Broker by name"},
+	 *      {"name"="Employee", "dataType"="string", "description"="search Employee by name"},
 	 *      {"name"="limit", "dataType"="integer"},
 	 *      {"name"="offset", "dataType"="integer"},
 	 *      {"name"="order", "dataType"="string", "description"="order by column"}
 	 *   },
-	 *   output = "App\ManagerBundle\Entities\Model\Broker",
+	 *   output = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     404 = "Returned when the Broker is not found"
+	 *     404 = "Returned when the Employee is not found"
 	 *   }
 	 * )
 	 *
-	 * @Annotations\View(templateVar="Broker")
+	 * @Annotations\View(templateVar="Employee")
 	 *
 	 * @param Request $request the request object
 	 * @param int     $id      the page id
@@ -79,23 +79,23 @@ class BrokerController extends Base\Controller {
 	 *
 	 * @throws NotFoundHttpException when page not exist
 	 */
-	public function getBrokersAction(Request $request)
+	public function getEmployeesAction(Request $request)
 	{
 		$query    = $request->query->all();
         $paging   = Arr::extract($query, [ 'limit', 'offset',  'order', 'page', 'sort' ]);
-		$filters  = Arr::extract($query, [ 'search', 'broker', 'active', 'country' ]);
+		$filters  = Arr::extract($query, [ 'search', 'employee', 'active', 'country' ]);
 		$settings = Arr::extract($query, [ 'select', 'index', 'selectBox', 'get_total' ]);
 
         $filters = array_filter($filters);
         $filters = array_diff($filters, [ 'null' ]);
 
-		$handler  = $this->getHandler('Broker', 'collect');
+		$handler  = $this->getHandler('Employee', 'collect');
 
         return $handler->setOptions($filters, $paging, $settings)->execute();
 	}
 
 	/**
-	 * Create a Broker from the submitted data.
+	 * Create a Employee from the submitted data.
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
@@ -107,24 +107,24 @@ class BrokerController extends Base\Controller {
 	 *   }
 	 * )
 	 *
-	 * @Annotations\View(templateVar="Broker")
+	 * @Annotations\View(templateVar="Employee")
 	 *
 	 * @param Request $request the request object
 	 *
 	 * @return array
 	 */
-	public function postBrokerAction(Request $request)
+	public function postEmployeeAction(Request $request)
 	{
 		// Gathering data and handler
 		$post = $request->request->all();
-        $handler = $this->getHandler('Broker', 'Create');
+        $handler = $this->getHandler('Employee', 'Create');
 
 		return $handler->setData($post)->execute();
 	}
 
 
 	/**
-	 * Create a Broker from the submitted data.
+	 * Create a Employee from the submitted data.
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
@@ -136,34 +136,34 @@ class BrokerController extends Base\Controller {
 	 *   }
 	 * )
 	 *
-	 * @Annotations\View(templateVar="Broker")
+	 * @Annotations\View(templateVar="Employee")
 	 *
 	 * @param Request $request the request object
 	 *
 	 * @return array
 	 */
-	public function putBrokerAction(Request $request, $id)
+	public function putEmployeeAction(Request $request, $id)
 	{
 		// Gathering data and handler
 		$post = $request->request->all();
-		$handler = $this->getHandler('Broker', 'Update');
+		$handler = $this->getHandler('Employee', 'Update');
 
 		return $handler->setData($post, $id)->execute();
 	}
 
     /**
-     * Update broker status.
+     * Update employee status.
      *
-     * @post("/broker/status/{id}")
-     * @Annotations\View(templateVar="Broker")
+     * @post("/employee/status/{id}")
+     * @Annotations\View(templateVar="Employee")
      * @param Request $request the request object
      * @return array
      */
-    public function activateBrokerAction(Request $request, $id)
+    public function activateEmployeeAction(Request $request, $id)
     {
         $post = $request->request->all();
         // Gathering data and handler
-        $handler = $this->getHandler('Broker', 'Update');
+        $handler = $this->getHandler('Employee', 'Update');
 
         return $handler->setData([ 'active' => Arr::get($post, 'status') ? 1 : 0 ], $id)->execute();
     }

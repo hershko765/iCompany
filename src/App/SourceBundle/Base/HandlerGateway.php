@@ -60,9 +60,9 @@ class HandlerGateway {
              */
             $handler = $this->handler_container->get($handler_alias);
             
-            // Check if the right permission given
+/*            // Check if the right permission given
             if ($this->permission_code < $handler::REQUIRED_PERMISSION)
-                throw new ConnectionException('Permission Denied');
+                throw new ConnectionException('Permission Denied');*/
 
             return $handler;
         }

@@ -4,20 +4,9 @@ app_manager:
     resource: "@ManagerBundle/Resources/config/routes.yml"
     defaults: {_format: json}
 
-user_api:
-    type: rest
-    prefix: /api
-    resource: "@UserBundle/Resources/config/routes.yml"
-    defaults: {_format: json}
-
-
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
-
-app_users_security:
-    type: annotation
-    resource: "@UserBundle/Controller/SecurityController.php"
 
 default_manager:
     resource: "@ManagerBundle/Controller/DefaultController.php"

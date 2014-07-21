@@ -53,14 +53,6 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-            bonus:
-                driver:   "%database_driver%"
-                host:     "199.223.214.224"
-                port:     "%database_port%"
-                dbname:   "binarybn_db"
-                user:     "binarybn_user"
-                password: "JK*947"
-                charset:  UTF8
     orm:
         default_entity_manager: default
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -77,27 +69,6 @@ doctrine:
                         dir:        %kernel.root_dir%/../src/App/ManagerBundle/Entities
                         prefix:     App\ManagerBundle\Entities
                         alias:      AppManagerBundle
-                    User:
-                        type:       annotation
-                        is_bundle:  false
-                        dir:        %kernel.root_dir%/../src/App/UserBundle/Entities
-                        prefix:     App\UserBundle\Entities
-                        alias:      AppUserBundle
-            bonus:
-                connection:       bonus
-                mappings:
-                    Manager:
-                        type:       annotation
-                        is_bundle:  false
-                        dir:        %kernel.root_dir%/../src/App/ManagerBundle/Entities
-                        prefix:     App\ManagerBundle\Entities
-                        alias:      AppManagerBundle
-                    User:
-                        type:       annotation
-                        is_bundle:  false
-                        dir:        %kernel.root_dir%/../src/App/UserBundle/Entities
-                        prefix:     App\UserBundle\Entities
-                        alias:      AppUserBundle
 
 # Swiftmailer Configuration
 swiftmailer:
