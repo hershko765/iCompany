@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Broker;
+namespace App\ManagerBundle\Entities\Handler\Employee;
 
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Interfaces\Handler;
@@ -29,7 +29,7 @@ class Delete extends HandlerManager implements Handler {
 
 	public function execute()
 	{
-		$repository = $this->em->getRepository('AppManagerBundle:Model\Broker');
+		$repository = $this->em->getRepository('AppManagerBundle:Model\Employee');
 		$repository->delete($this->id);
 	}
 }

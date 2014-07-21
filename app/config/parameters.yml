@@ -3,7 +3,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port: null
-    database_name: binarypr_traffic_junction
+    database_name: i_company
     database_user: binarypr_tjdba
     database_password: sSI$5+^qU%
     mailer_transport: smtp

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\UserBundle\Entities\Handler\User;
+namespace App\ManagerBundle\Entities\Handler\Employee;
 
+use App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Repository\Repository;
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Helpers\Arr;
 use App\SourceBundle\Interfaces\Handler;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Process\Process;
 use Symfony\Component\Validator\Validator;
-
 
 class Update extends HandlerManager implements Handler {
 
@@ -32,7 +31,7 @@ class Update extends HandlerManager implements Handler {
 	 */
 	protected $data, $id;
 
-	public function setData(array $data, $id)
+	public function setData(array $data, $id = NULL)
 	{
 		$this->data = $data;
 		$this->id = $id;
@@ -42,17 +41,16 @@ class Update extends HandlerManager implements Handler {
 	public function execute()
 	{
 		// Get repository and filter data to contain only allowed data
-		$repo = $this->em->getRepository('AppUserBundle:Model\User');
-
+		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee');
 		// Load model by id, throw exception if nothing found
-		$user = $repo->find($this->id);
-		if ( ! $user)
-			throw new NotFoundHttpException('User not found for id: '.$this->id);
+		$employee = $repo->find($this->id);
+		if ( ! $employee)
+			throw new NotFoundHttpException('Employee not found for id: '.$this->id);
 
-		$repo->hydrate($this->data, $user, Repository::PERM_CREATE);
+		$repo->hydrate($this->data, $employee, Repository::PERM_UPDATE);
 
 		// Validate model, if errors found return them
-		$errors = $this->validate->validate($user);
+		$errors = $this->validate->validate($employee);
 		if(count($errors) > 0)
 		{
 			return [
@@ -64,7 +62,7 @@ class Update extends HandlerManager implements Handler {
 		// Save model into the database and return response
 		return [
 			'status' => TRUE,
-			'data_array' => $repo->save($user)
+			'data_array' => $repo->save($employee)
 		];
 	}
 }

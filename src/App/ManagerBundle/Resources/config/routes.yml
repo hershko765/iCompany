@@ -1,6 +1,6 @@
 
-app_manager_broker:
+employee_controller:
     type: rest
     prefix: /v1
-    resource: "App\ManagerBundle\Controller\API\\BrokerController"
+    resource: "App\ManagerBundle\Controller\API\\EmployeeController"
     name_prefix:  api_1_

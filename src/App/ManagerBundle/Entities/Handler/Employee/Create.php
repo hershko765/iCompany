@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Broker;
+namespace App\ManagerBundle\Entities\Handler\Employee;
 
-use App\ManagerBundle\Entities\Model\Broker;
+use App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Repository\Repository;
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Interfaces\Handler;
@@ -37,14 +37,14 @@ class Create extends HandlerManager implements Handler {
 
 	public function execute()
 	{
-		$broker = new Broker();
+		$employee = new Employee();
 
 		// Get repository and filter data to contain only allowed data
-		$repo = $this->em->getRepository('AppManagerBundle:Model\Broker');
-		$repo->hydrate($this->data, $broker, Repository::PERM_CREATE);
+		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee');
+		$repo->hydrate($this->data, $employee, Repository::PERM_CREATE);
 
 		// Validate model, check for errors and return them if exists
-		$errors = $this->validate->validate($broker);
+		$errors = $this->validate->validate($employee);
 		if(count($errors) > 0)
 		{
 			return [
@@ -52,15 +52,10 @@ class Create extends HandlerManager implements Handler {
 				'errors' => $this->errorsToArr($errors)
 			];
 		}
-
-        $bonusBroker = clone $broker;
-        $bonusRepo = $this->em->getRepository('AppManagerBundle:Model\Broker', 'bonus');
-        $bonusRepo->save($bonusBroker);
-
         // Save model and return data response with the new ID
 		return [
 			'status' => TRUE,
-			'data_array' => $repo->save($broker)
+			'data_array' => $repo->save($employee)
 		];
 	}
 }

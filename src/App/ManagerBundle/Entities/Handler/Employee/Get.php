@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Broker;
+namespace App\ManagerBundle\Entities\Handler\Employee;
 
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Interfaces\Handler;
@@ -33,12 +33,12 @@ class Get extends HandlerManager implements Handler {
 
 	public function execute()
 	{
-		$Broker = $this->em->getRepository('AppManagerBundle:Model\Broker')->find($this->id);
+		$Employee = $this->em->getRepository('AppManagerBundle:Model\Employee')->find($this->id);
 
-		if ( ! $Broker)
-			throw new NotFoundHttpException('Broker Not Found!');
+		if ( ! $Employee)
+			throw new NotFoundHttpException('Employee Not Found!');
 
-		return $Broker;
+		return $Employee;
 	}
 }
  
