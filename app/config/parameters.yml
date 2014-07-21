@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: binarypr_traffic_junction
+    database_user: binarypr_tjdba
+    database_password: sSI$5+^qU%
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: e7a35c72096d699c5a43c07b4fd6422a

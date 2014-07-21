@@ -1,0 +1,66 @@
+## Usefull console commands
+
+---------- Git Bash Commands ----------
+# Set Default pull branch
+	git branch --set-upstream-to=origin/<remove> <local>
+
+# Set Default push branch
+	git config --global push.default upstream
+
+---------- Symfony Commands ----------
+# Run Server
+	php app/console server:run
+
+# Create Bundle
+	php app/console generate:bundle
+
+# Commands List
+	php app/console
+
+# Install Composer
+	curl -s https://getcomposer.org/installer | php
+
+# Update composer
+	php composer.phar update
+
+# Clear Cache
+	php app/console cache:clear -e dev
+
+---------- Doctorine ------------
+# Create Database
+	php app/console doctrine:database:create
+
+# Drop Database
+	php app/console doctrine:database:drop --force
+
+# Create Entity
+	php app/console doctrine:generate:entity
+
+---------- Migrations ------------
+## Doctrine Annonitaion Column Types
+	http://doctrine-orm.readthedocs.org/en/latest/reference/basic-mapping.html
+
+# Create Migration File
+	php app/console doctrine:migrations:generate
+
+# Automiatic create migration by annonitations
+	php app/console doctrine:migrations:diff
+
+# Run migrations
+	php app/console doctrine:migrations:migrate
+
+## More info http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
+
+# Change Database, Add/Remove/Modify column or more:
+	# Edit entity model property annonitation ( Add property for new colum, delete property for delete etc..)
+	# Run the following commands in there order:
+		# php app/console doctrine:generate:entities App<Bundle>:Model/<Entity> // Update entity
+		# php app/console doctrine:migrations:diff // Update migrations
+		# php app/console doctrine:migrations:migrate // Run migrations
+
+# Shortcut for the command above
+	php app/console entity:flush --migrate "Bundle:Entity"
+	// without "--migrate" all the above will happen excpet running the migration:migrate command
+
+# Updat Schema
+ php app/console doctrine:schema:update --force

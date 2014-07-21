@@ -1,0 +1,53 @@
+<?php
+
+namespace App\UserBundle\Entities\Model;
+
+use App\SourceBundle\Base\Model;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * App\ManagerBundle\Entities\Model\User
+ *
+ * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\User")
+ */
+class User extends Model
+{
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=250)
+     */
+    protected $password;
+}

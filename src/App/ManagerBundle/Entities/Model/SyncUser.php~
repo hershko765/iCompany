@@ -1,0 +1,433 @@
+<?php
+
+namespace App\ManagerBundle\Entities\Model;
+
+use App\SourceBundle\Base\Model;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * App\ManagerBundle\Entities\Model\SyncUser
+ *
+ * @ORM\Table(name="synced_users")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\SyncUser")
+ */
+class SyncUser extends Model
+{
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+	protected $id;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="integer")
+	 */
+	protected $origin_id;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=80)
+	 */
+	protected $first_name;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $last_name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $phone_number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $broker_name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $currency;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $campaign_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $launch;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $strategy_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $subcampaign_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="datetime")
+     */
+    protected $synced;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set origin_id
+     *
+     * @param integer $originId
+     * @return SyncUser
+     */
+    public function setOriginId($originId)
+    {
+        $this->origin_id = $originId;
+
+        return $this;
+    }
+
+    /**
+     * Get origin_id
+     *
+     * @return integer 
+     */
+    public function getOriginId()
+    {
+        return $this->origin_id;
+    }
+
+    /**
+     * Set first_name
+     *
+     * @param string $firstName
+     * @return SyncUser
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get first_name
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set last_name
+     *
+     * @param string $lastName
+     * @return SyncUser
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get last_name
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return SyncUser
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set phone_number
+     *
+     * @param string $phoneNumber
+     * @return SyncUser
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phone_number = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phone_number
+     *
+     * @return string 
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return SyncUser
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set broker_name
+     *
+     * @param string $brokerName
+     * @return SyncUser
+     */
+    public function setBrokerName($brokerName)
+    {
+        $this->broker_name = $brokerName;
+
+        return $this;
+    }
+
+    /**
+     * Get broker_name
+     *
+     * @return string 
+     */
+    public function getBrokerName()
+    {
+        return $this->broker_name;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $currency
+     * @return SyncUser
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Get currency
+     *
+     * @return string 
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * Set campaign_id
+     *
+     * @param integer $campaignId
+     * @return SyncUser
+     */
+    public function setCampaignId($campaignId)
+    {
+        $this->campaign_id = $campaignId;
+
+        return $this;
+    }
+
+    /**
+     * Get campaign_id
+     *
+     * @return integer 
+     */
+    public function getCampaignId()
+    {
+        return $this->campaign_id;
+    }
+
+    /**
+     * Set launch
+     *
+     * @param string $launch
+     * @return SyncUser
+     */
+    public function setLaunch($launch)
+    {
+        $this->launch = $launch;
+
+        return $this;
+    }
+
+    /**
+     * Get launch
+     *
+     * @return string 
+     */
+    public function getLaunch()
+    {
+        return $this->launch;
+    }
+
+    /**
+     * Set strategy_id
+     *
+     * @param integer $strategyId
+     * @return SyncUser
+     */
+    public function setStrategyId($strategyId)
+    {
+        $this->strategy_id = $strategyId;
+
+        return $this;
+    }
+
+    /**
+     * Get strategy_id
+     *
+     * @return integer 
+     */
+    public function getStrategyId()
+    {
+        return $this->strategy_id;
+    }
+
+    /**
+     * Set subcampaign_id
+     *
+     * @param string $subcampaignId
+     * @return SyncUser
+     */
+    public function setSubcampaignId($subcampaignId)
+    {
+        $this->subcampaign_id = $subcampaignId;
+
+        return $this;
+    }
+
+    /**
+     * Get subcampaign_id
+     *
+     * @return string 
+     */
+    public function getSubcampaignId()
+    {
+        return $this->subcampaign_id;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return SyncUser
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+}

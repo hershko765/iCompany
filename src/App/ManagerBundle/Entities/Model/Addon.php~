@@ -1,0 +1,358 @@
+<?php
+
+namespace App\ManagerBundle\Entities\Model;
+
+use App\SourceBundle\Base\Model;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\SourceBundle\Base\Collection;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\Table;
+
+/**
+ * App\ManagerBundle\Entities\Model\Addon
+ *
+ * @ORM\Table(name="addons")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Addon")
+ */
+class Addon extends Model
+{
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+	protected $id;
+
+	/**
+	 * @var string
+	 *
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="text", nullable=TRUE)
+	 */
+	protected $description;
+
+	/**
+	 * @var string
+	 *
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="string", nullable=TRUE, length=400)
+	 */
+	protected $short_desc;
+
+	/**
+	 * @var string
+	 *
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="string", length=200)
+	 */
+	protected $download_link;
+
+	/**
+	 * @var string
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="datetime")
+	 */
+	protected $last_release;
+
+	/**
+	 * @var string
+	 * @ORM\Column(type="datetime", nullable=TRUE)
+	 */
+	protected $last_alpha;
+
+	/**
+	 * @var string
+	 * @ORM\Column(type="string", length=50, nullable=TRUE)
+	 */
+	protected $version;
+
+	/**
+	 * @var string
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="string", length=200)
+	 */
+	protected $title;
+
+	/**
+	 * @var string
+	 * @Assert\NotBlank()
+	 * @ORM\Column(type="string", length=200)
+	 */
+	protected $name;
+
+	/**
+	 * @var string
+	 * @ORM\Column(type="text", nullable=TRUE)
+	 */
+	protected $screenshots;
+
+	/**
+	 * @var integer
+	 * @ManyToOne(targetEntity="App\ManagerBundle\Entities\Model\Addon\Resource")
+	 * @JoinColumn(name="resource_id", referencedColumnName="id")
+	 */
+	protected $resource_id;
+
+	/**
+	 * @var string
+	 * @ORM\Column(type="datetime")
+	 */
+	protected $updated;
+
+	/**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Addon
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+	/**
+	 * Set title
+	 *
+	 * @param string $title
+	 * @return Addon
+	 */
+	public function setTitle($title)
+	{
+		$this->title = $title;
+
+		return $this;
+	}
+
+	/**
+	 * Get title
+	 *
+	 * @return string
+	 */
+	public function getTitle()
+	{
+		return $this->title;
+	}
+
+	/**
+	 * Set name
+	 *
+	 * @param string $name
+	 * @return Addon
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+
+		return $this;
+	}
+
+	/**
+	 * Get name
+	 *
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * Set version
+	 *
+	 * @param string $version
+	 * @return Addon
+	 */
+	public function setVersion($version)
+	{
+		$this->version = $version;
+
+		return $this;
+	}
+
+	/**
+	 * Get version
+	 *
+	 * @return string
+	 */
+	public function getVersion()
+	{
+		return $this->version;
+	}
+
+	/**
+	 * Set screenshots
+	 *
+	 * @param string $screenshots
+	 * @return Addon
+	 */
+	public function setScreenshots($screenshots)
+	{
+		$this->screenshots = $screenshots;
+
+		return $this;
+	}
+
+	/**
+	 * Get screenshots
+	 *
+	 * @return string
+	 */
+	public function getScreenshots()
+	{
+		return $this->screenshots;
+	}
+	
+	/**
+	 * Set last release
+	 *
+	 * @param string $last_release
+	 * @return Addon
+	 */
+	public function setLastRelease($lastrelease)
+	{
+		if (is_string($lastrelease))
+			$lastrelease = new \DateTime($lastrelease);
+
+		$this->last_release = $lastrelease;
+
+		return $this;
+	}
+
+	/**
+	 * Get last release
+	 *
+	 * @return string
+	 */
+	public function getLastRelease()
+	{
+		return $this->last_release;
+	}
+
+	/**
+	 * Set last alpha
+	 *
+	 * @param string $last_alpha
+	 * @return Addon
+	 */
+	public function setLastAlpha($lastalpha)
+	{
+		$this->last_alpha = $lastalpha;
+
+		return $this;
+	}
+
+	/**
+	 * Get last alpha
+	 *
+	 * @return string
+	 */
+	public function getLastAlpha()
+	{
+		return $this->last_alpha;
+	}
+
+	/**
+	 * Set short desc
+	 *
+	 * @param string $short_desc
+	 * @return Addon
+	 */
+	public function setShortDesc($shortdesc)
+	{
+		$this->short_desc = $shortdesc;
+
+		return $this;
+	}
+
+	/**
+	 * Get short desc
+	 *
+	 * @return string
+	 */
+	public function getShortDesc()
+	{
+		return $this->short_desc;
+	}
+	
+    /**
+     * Set download_link
+     *
+     * @param string $downloadLink
+     * @return Addon
+     */
+    public function setDownloadLink($downloadLink)
+    {
+        $this->download_link = $downloadLink;
+
+        return $this;
+    }
+
+    /**
+     * Get download_link
+     *
+     * @return string 
+     */
+    public function getDownloadLink()
+    {
+        return $this->download_link;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $lastUpdated
+     * @return Addon
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new Collection();
+    }
+
+}

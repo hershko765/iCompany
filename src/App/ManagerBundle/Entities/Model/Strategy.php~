@@ -1,0 +1,83 @@
+<?php
+
+namespace App\ManagerBundle\Entities\Model;
+
+use App\SourceBundle\Base\Model;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * App\ManagerBundle\Entities\Model\Split
+ *
+ * @ORM\Table(name="splits")
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Split")
+ */
+class Strategy extends Model
+{
+    /**
+     * @var integer
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+	protected $id;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=80)
+	 */
+	protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    protected $assets;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $per_day;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $start_from;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=50)
+     */
+    protected $start_to;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $delay_from;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="integer")
+     */
+    protected $delay_to;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=10)
+     */
+    protected $program;
+
+}
