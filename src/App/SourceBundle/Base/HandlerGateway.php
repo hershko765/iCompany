@@ -36,9 +36,6 @@ class HandlerGateway {
 	 */
 	public function getHandler($entity, $handler, $bundle = FALSE)
 	{
-        // Get request permission
-        $this->trackPermission();
-
 		// Creating class alias for handler container
 		$handler_alias = strtolower($bundle).'_'.strtolower($entity).'_'.strtolower($handler);
 
@@ -59,10 +56,6 @@ class HandlerGateway {
              * @var $handler HandlerManager
              */
             $handler = $this->handler_container->get($handler_alias);
-            
-/*            // Check if the right permission given
-            if ($this->permission_code < $handler::REQUIRED_PERMISSION)
-                throw new ConnectionException('Permission Denied');*/
 
             return $handler;
         }
@@ -108,18 +101,5 @@ class HandlerGateway {
 
 		$handlerReg->addArgument($argKeys);
 	}
-
-    /**
-     * Locate request permission
-     */
-    private function trackPermission()
-    {
-        $request = $this->container->get('request');
-
-        if ($request->cookies->get('user'))
-            $this->permission_code = HandlerManager::PERM_MEMBER;
-        else
-            $this->permission_code = HandlerManager::PERM_ALL;
-    }
 
 } // End HandlerGateway
