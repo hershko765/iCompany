@@ -28,7 +28,13 @@ class Employee extends Repository {
 		'id'         => [ 'varchar', self::PERM_NONE   ],
 		'first_name' => [ 'varchar', self::PERM_ALL    ],
 		'last_name'  => [ 'varchar', self::PERM_ALL    ],
-		'email'      => [ 'varchar', self::PERM_CREATE ],
+		'email'      => [ 'varchar', self::PERM_ALL    ],
+        'phone'      => [ 'varchar', self::PERM_ALL    ],
+        'password'   => [ 'varchar', self::PERM_ALL    ],
+        'company_id' => [ 'varchar', self::PERM_ALL    ],
+        'created'    => [ 'varchar', self::PERM_ALL    ],
+        'modified'   => [ 'varchar', self::PERM_ALL    ],
+        'deleted'    => [ 'varchar', self::PERM_ALL    ]
 	];
 
 	/**

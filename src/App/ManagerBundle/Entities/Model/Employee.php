@@ -41,4 +41,257 @@ class Employee extends Model
      */
     protected $email;
 
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=80)
+     */
+    protected $password;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer")
+     */
+    protected $company_id;
+
+    /**
+     * @var object
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * @var object
+     * @ORM\Column(type="datetime")
+     */
+    protected $modified;
+
+    /**
+     * @var object
+     * @ORM\Column(type="datetime")
+     */
+    protected $deleted;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set first_name
+     *
+     * @param string $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get first_name
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Set last_name
+     *
+     * @param string $lastName
+     * @return Employee
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get last_name
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Employee
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param integer $phone
+     * @return Employee
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return integer 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return Employee
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set company_id
+     *
+     * @param integer $companyId
+     * @return Employee
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->company_id = $companyId;
+
+        return $this;
+    }
+
+    /**
+     * Get company_id
+     *
+     * @return integer 
+     */
+    public function getCompanyId()
+    {
+        return $this->company_id;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Employee
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set modified
+     *
+     * @param \DateTime $modified
+     * @return Employee
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+
+        return $this;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return \DateTime 
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param \DateTime $deleted
+     * @return Employee
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return \DateTime 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
 }
