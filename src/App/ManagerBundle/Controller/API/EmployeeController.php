@@ -19,6 +19,7 @@ use FOS\RestBundle\Request\ParamFetcherInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 
 class EmployeeController extends Base\Controller {
@@ -28,11 +29,11 @@ class EmployeeController extends Base\Controller {
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Get ",
+	 *   description = "Get Single Employee",
 	 *   output = "Acme\BlogBundle\Entity\Page",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     404 = "Returned when the page is not found"
+	 *     404 = "Returned when the employee is not found"
 	 *   }
 	 * )
 	 *
@@ -52,16 +53,17 @@ class EmployeeController extends Base\Controller {
 	}
 
 	/**
-	 * Get single Employee,
+	 * Get List of Employees,
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Get an Employee by given ID",
+	 *   description = "Get List of Employees",
 	 *   filters={
-	 *      {"name"="Employee", "dataType"="string", "description"="search Employee by name"},
+	 *      {"name"="search", "dataType"="string", "description"="search Employee by name"},
 	 *      {"name"="limit", "dataType"="integer"},
 	 *      {"name"="offset", "dataType"="integer"},
-	 *      {"name"="order", "dataType"="string", "description"="order by column"}
+	 *      {"name"="order", "dataType"="string", "description"="order by DESC/ASC"},
+	 *      {"name"="sort", "dataType"="string", "description"="order by column"}
 	 *   },
 	 *   output = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
@@ -99,11 +101,11 @@ class EmployeeController extends Base\Controller {
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Creates a new page from the submitted data.",
+	 *   description = "Creates a new employee from post fields",
 	 *   input = "Acme\BlogBundle\Form\PageType",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     400 = "Returned when the form has errors"
+	 *     413 = "Returned when the form has errors"
 	 *   }
 	 * )
 	 *
@@ -137,9 +139,7 @@ class EmployeeController extends Base\Controller {
 	 * )
 	 *
 	 * @Annotations\View(templateVar="Employee")
-	 *
 	 * @param Request $request the request object
-	 *
 	 * @return array
 	 */
 	public function putEmployeeAction(Request $request, $id)
@@ -150,21 +150,4 @@ class EmployeeController extends Base\Controller {
 
 		return $handler->setData($post, $id)->execute();
 	}
-
-    /**
-     * Update employee status.
-     *
-     * @post("/employee/status/{id}")
-     * @Annotations\View(templateVar="Employee")
-     * @param Request $request the request object
-     * @return array
-     */
-    public function activateEmployeeAction(Request $request, $id)
-    {
-        $post = $request->request->all();
-        // Gathering data and handler
-        $handler = $this->getHandler('Employee', 'Update');
-
-        return $handler->setData([ 'active' => Arr::get($post, 'status') ? 1 : 0 ], $id)->execute();
-    }
 }

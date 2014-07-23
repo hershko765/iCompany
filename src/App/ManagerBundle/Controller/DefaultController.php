@@ -23,11 +23,25 @@ use FOS\RestBundle\View\View;
 class DefaultController extends Base\Controller
 {
     /**
-     * @Route("/")
+     * @Route("/{page}")
      * @Template("ManagerBundle:Default:index.html.twig")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $page)
     {
-
+        return [
+            'page' => $page,
+        ];
     }
+
+    /**
+     * @Route("/registration")
+     * @Template("ManagerBundle:Default:registration.html.twig")
+     */
+    public function registrationAction(Request $request, $page)
+    {
+        return [
+            'page' => $page,
+        ];
+    }
+
 }
