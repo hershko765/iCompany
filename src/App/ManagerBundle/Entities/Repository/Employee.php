@@ -16,7 +16,9 @@ class Employee extends Repository {
 	 * [ <Filter Name>, <Related Column>, <Mysql Operator>
 	 * @var array
 	 */
-	protected $filterMap = [ ];
+	protected $filterMap = [
+        [ 'deleted', 'deleted', '=' ]
+    ];
 
 	/**
 	 * List of table fields

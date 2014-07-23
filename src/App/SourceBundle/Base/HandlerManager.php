@@ -29,6 +29,7 @@ abstract class HandlerManager implements Handler {
      * @DI(alias=request)
      */
     protected $request;
+
     /**
      * Single use credentials
      * @var array

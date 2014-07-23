@@ -5,13 +5,14 @@ namespace App\ManagerBundle\Entities\Handler\Employee;
 use App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Repository\Repository;
 use App\SourceBundle\Base\HandlerManager;
+use App\SourceBundle\Exception\ValidationException;
 use App\SourceBundle\Interfaces\Handler;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Validator\Validator;
 
 class Create extends HandlerManager implements Handler {
 
-	/**
+ 	/**
 	 * @var Registry
 	 * @DI (alias=doctrine)
 	 */
@@ -46,12 +47,8 @@ class Create extends HandlerManager implements Handler {
 		// Validate model, check for errors and return them if exists
 		$errors = $this->validate->validate($employee);
 		if(count($errors) > 0)
-		{
-			return [
-				'status' => FALSE,
-				'errors' => $this->errorsToArr($errors)
-			];
-		}
+            throw new ValidationException($errors);
+
         // Save model and return data response with the new ID
 		return [
 			'status' => TRUE,
