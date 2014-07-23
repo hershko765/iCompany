@@ -2,8 +2,10 @@
 
 namespace App\SourceBundle\Base;
 
+use App\SourceBundle\Exception\ValidationException;
 use App\SourceBundle\Helpers\Arr;
 use App\SourceBundle\Interfaces\Handler;
+use Symfony\Component\HttpFoundation\Request;
 
 
 abstract class HandlerManager implements Handler {
@@ -14,13 +16,30 @@ abstract class HandlerManager implements Handler {
     const PERM_ADMIN  = 4;
 
     // Default permission required to load the handler
-    const REQUIRED_PERMISSION = 2;
+    const REQUIRED_PERMISSION = self::PERM_ALL;
 
 	/**
 	 * @var HandlerGateway
 	 * @DI(alias=handler_gateway)
 	 */
 	protected $handlerGateway;
+
+    /**
+     * @var Request
+     * @DI(alias=request)
+     */
+    protected $request;
+    /**
+     * Single use credentials
+     * @var array
+     */
+    protected $credentials;
+
+    /**
+     * Contain currenct permission code
+     * @var integer
+     */
+    protected $permission_code;
 
 	/**
 	 * Inject dependencies into class properties
@@ -85,11 +104,71 @@ abstract class HandlerManager implements Handler {
 		return $this;
 	}
 
+	public function setCredentials(array $credentials)
+	{
+		$this->credentials = $credentials;
+		return $this;
+	}
+
 	public function setPaging(array $paging)
 	{
 		$this->paging = $paging;
 		return $this;
 	}
 
-	abstract function execute();
+    /**
+     * Locate request permission
+     */
+    private function trackPermission()
+    {
+        if ($this->request->cookies->get('user'))
+        {
+            $this->permission_code = HandlerManager::PERM_MEMBER;
+        }
+        else
+        {
+            if ($this->credentials && static::REQUIRED_PERMISSION > self::PERM_ALL)
+            {
+                $result = $this->getHandler('Auth', 'Login', 'User')
+                    ->setCredentials($this->credentials)
+                    ->execute();
+
+
+                if ($result)
+                    $this->permission_code = HandlerManager::PERM_MEMBER;
+                else
+                    $this->permission_code = HandlerManager::PERM_ALL;
+
+                return;
+            }
+
+            $this->permission_code = HandlerManager::PERM_ALL;
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    abstract protected function _execute();
+
+    /**
+     * Secure execute method
+     *
+     * @return array
+     * @throws \App\SourceBundle\Exception\ValidationException
+     */
+    public function execute()
+    {
+        // Update permissions
+        $this->trackPermission();
+
+        // Check permissions
+        if ($this->permission_code < static::REQUIRED_PERMISSION)
+        {
+            throw new ValidationException('Invalid Permissions');
+        }
+
+        // Continue with the flow
+        return $this->_execute();
+    }
 }

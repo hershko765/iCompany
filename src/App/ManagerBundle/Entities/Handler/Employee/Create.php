@@ -35,7 +35,7 @@ class Create extends HandlerManager implements Handler {
 		return $this;
 	}
 
-	public function execute()
+	protected function _execute()
 	{
 		$employee = new Employee();
 

@@ -59,7 +59,7 @@ abstract class Repository extends Core {
 	 */
 	public function collect(array $filters = [], array $paging = [], array $settings = [])
 	{
-        $qb = $this->createQueryBuilder('entity');
+		$qb = $this->createQueryBuilder('entity');
         $total = NULL;
 
 		$this->addFilters($qb, $filters);

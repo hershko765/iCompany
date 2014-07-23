@@ -31,7 +31,7 @@ class Get extends HandlerManager implements Handler {
 		return $this;
 	}
 
-	public function execute()
+	protected function _execute()
 	{
 		$Employee = $this->em->getRepository('AppManagerBundle:Model\Employee')->find($this->id);
 

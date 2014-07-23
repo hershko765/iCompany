@@ -31,7 +31,7 @@ class Collect extends HandlerManager {
 		return $this;
 	}
 
-	public function execute()
+	protected function _execute()
 	{
 		return $this->em->getRepository('AppManagerBundle:Model\Employee')
 			->collect($this->filters, $this->paging, $this->settings);

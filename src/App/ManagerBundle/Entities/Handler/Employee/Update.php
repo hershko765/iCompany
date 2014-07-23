@@ -38,7 +38,7 @@ class Update extends HandlerManager implements Handler {
 		return $this;
 	}
 
-	public function execute()
+	protected function _execute()
 	{
 		// Get repository and filter data to contain only allowed data
 		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee');

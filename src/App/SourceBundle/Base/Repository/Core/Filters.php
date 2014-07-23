@@ -81,6 +81,7 @@ class Filters {
                 $this->qb->orWhere("entity.".$col.' LIKE :'.$params['filterName'].$idx);
                 $this->qb->setParameter($params['filterName'].$idx, '%'.$params['value'].'%');
             }
+
             return;
         }
 		$this->qb->andWhere("entity.".$params['column'].' LIKE :'.$params['filterName']);

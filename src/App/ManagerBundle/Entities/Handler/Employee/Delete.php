@@ -27,7 +27,7 @@ class Delete extends HandlerManager implements Handler {
 		return $this;
 	}
 
-	public function execute()
+	protected function _execute()
 	{
 		$repository = $this->em->getRepository('AppManagerBundle:Model\Employee');
 		$repository->delete($this->id);
