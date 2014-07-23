@@ -9,9 +9,10 @@
 // -- created
 // -- modified
 // -- deleted
-
+-------------------------------------
 // Employee Condition
 // -- id
+// -- employee id
 // -- field
 // -- payment_type
 // -- monthly_hours
@@ -20,7 +21,7 @@
 // -- created
 // -- modified
 // -- deleted
-
+---------------------------------------
 // Department
 // -- id
 // -- name
