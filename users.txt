@@ -37,6 +37,13 @@
 // -- department_id
 
 // Company
+// -- name
+// -- title
+// -- logo
+// -- size
+// -- created
+// -- modified
+// -- deleted
 
 // Employee Permission
 // -- employee_id
