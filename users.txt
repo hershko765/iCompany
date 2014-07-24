@@ -18,6 +18,7 @@
 // -- monthly_hours
 // -- summed_hours
 // -- average_hours
+// -- employee_id
 // -- created
 // -- modified
 // -- deleted

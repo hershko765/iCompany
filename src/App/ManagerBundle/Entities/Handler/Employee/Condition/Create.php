@@ -1,20 +1,18 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Employee;
+namespace App\ManagerBundle\Entities\Handler\Employee\Condition;
 
 use App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Repository\Repository;
 use App\SourceBundle\Base\HandlerManager;
 use App\SourceBundle\Exception\ValidationException;
-use App\SourceBundle\Helpers\Arr;
 use App\SourceBundle\Interfaces\Handler;
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Validator\Validator;
 
-class Update extends HandlerManager implements Handler {
+class Create extends HandlerManager implements Handler {
 
-	/**
+ 	/**
 	 * @var Registry
 	 * @DI (alias=doctrine)
 	 */
@@ -27,35 +25,31 @@ class Update extends HandlerManager implements Handler {
 	protected $validate;
 
 	/**
-	 * data to update
+	 * Outsource data
 	 * @var array
 	 */
-	protected $data, $id;
+	protected $data;
 
 	public function setData(array $data, $id = NULL)
 	{
 		$this->data = $data;
-		$this->id = $id;
 		return $this;
 	}
 
 	protected function _execute()
 	{
+		$employee = new Employee();
+
 		// Get repository and filter data to contain only allowed data
-		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee');
-		// Load model by id, throw exception if nothing found
-		$employee = $repo->find($this->id);
-		if ( ! $employee)
-			throw new NotFoundHttpException('Employee not found for id: '.$this->id);
+		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee\Condition');
+		$repo->hydrate($this->data, $employee, Repository::PERM_CREATE);
 
-		$repo->hydrate($this->data, $employee, Repository::PERM_UPDATE);
-
-		// Validate model, if errors found return them
+		// Validate model, check for errors and return them if exists
 		$errors = $this->validate->validate($employee);
 		if(count($errors) > 0)
             throw new ValidationException($errors);
 
-		// Save model into the database and return response
+        // Save model and return data response with the new ID
 		return [
 			'status' => TRUE,
 			'data_array' => $repo->save($employee)

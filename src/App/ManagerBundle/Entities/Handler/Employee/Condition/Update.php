@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Handler\Employee;
+namespace App\ManagerBundle\Entities\Handler\Employee\Condition;
 
 use App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Repository\Repository;
@@ -42,7 +42,7 @@ class Update extends HandlerManager implements Handler {
 	protected function _execute()
 	{
 		// Get repository and filter data to contain only allowed data
-		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee');
+		$repo = $this->em->getRepository('AppManagerBundle:Model\Employee\Condition');
 		// Load model by id, throw exception if nothing found
 		$employee = $repo->find($this->id);
 		if ( ! $employee)
@@ -52,7 +52,7 @@ class Update extends HandlerManager implements Handler {
 
 		// Validate model, if errors found return them
 		$errors = $this->validate->validate($employee);
-		if(count($errors) > 0)
+        if(count($errors) > 0)
             throw new ValidationException($errors);
 
 		// Save model into the database and return response
