@@ -33,11 +33,11 @@
 // -- created
 // -- modified
 // -- deleted
-
+---------------------------------------
 // Employee Department
 // -- employee_id
 // -- department_id
-
+---------------------------------------
 // Company
 // -- name
 // -- title
@@ -46,23 +46,17 @@
 // -- created
 // -- modified
 // -- deleted
-
+---------------------------------------
 // Employee Permission
 // -- employee_id
 // -- department_id
-// -- permission_id
+// -- entity_id
+// -- handlers
 // -- created_by
-// -- created
-
-// Permission
-// -- id
-// -- name
-// -- title
-// -- description
+// -- modified_by
 // -- created
 // -- modified
-// -- deleted
-
+---------------------------------------
 // Employee Report
 // -- start_date
 // -- end_date
@@ -71,3 +65,14 @@
 // -- created
 // -- modified
 // -- deleted
+---------------------------------------
+// Handlers
+// -- id
+// -- entity_id
+// -- name
+// -- title
+---------------------------------------
+// Entity
+// -- id
+// -- name
+// -- title
