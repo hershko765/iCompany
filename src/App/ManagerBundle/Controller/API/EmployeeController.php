@@ -23,7 +23,6 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
 
-
 class EmployeeController extends Base\Controller {
 
 
@@ -32,7 +31,7 @@ class EmployeeController extends Base\Controller {
      *
      * @ApiDoc(
      *   resource = true,
-     *   description = "Creates a new page from the submitted data.",
+     *   description = "Validate Employee with email and password",
      *   input = "Acme\BlogBundle\Form\PageType",
      *   requirements={
      *      {
@@ -55,7 +54,7 @@ class EmployeeController extends Base\Controller {
      *   }
      * )
      * @post("/login")
-     * @Annotations\View(templateVar="Broker")
+     * @Annotations\View(templateVar="Employee")
      * @param Request $request the request object
      * @return array
      */
@@ -63,9 +62,11 @@ class EmployeeController extends Base\Controller {
     {
         // avivbenyair159@gmail.com
         $post = $request->request->all();
+
         // Gathering data and handler
         $handler = $this->getHandler('Employee', 'Login');
 
+        // Return response
         return $handler
             ->setCredentials([ 'email' => Arr::get($post, 'email'), 'password' => Arr::get($post, 'password') ])
             ->execute();
@@ -77,10 +78,10 @@ class EmployeeController extends Base\Controller {
 	 * @ApiDoc(
 	 *   resource = true,
 	 *   description = "Get Single Employee",
-	 *   output = "array",
+     *   output = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     404 = "Returned when the employee is not found"
+	 *     404 = "Returned when the employee ID given is not exists"
 	 *   }
 	 * )
 	 *
@@ -127,7 +128,6 @@ class EmployeeController extends Base\Controller {
 	 *   output = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     404 = "Returned when the Employee is not found"
 	 *   }
 	 * )
 	 *
@@ -138,7 +138,6 @@ class EmployeeController extends Base\Controller {
 	 *
 	 * @return array
 	 *
-	 * @throws NotFoundHttpException when page not exist
 	 */
 	public function getEmployeesAction(Request $request)
 	{
@@ -147,11 +146,13 @@ class EmployeeController extends Base\Controller {
 		$filters  = Arr::extract($query, [ 'search', 'employee', 'active', 'country' ]);
 		$settings = Arr::extract($query, [ 'select', 'index', 'selectBox', 'get_total' ]);
 
+        // Remove false or empty filters
         $filters = array_filter($filters);
+
+        // remove NULL values
         $filters = array_diff($filters, [ 'null' ]);
 
 		$handler  = $this->getHandler('Employee', 'collect');
-
         return $handler->setOptions($filters, $paging, $settings)->execute();
 	}
 
@@ -161,7 +162,7 @@ class EmployeeController extends Base\Controller {
 	 * @ApiDoc(
 	 *   resource = true,
 	 *   description = "Creates a new employee from post fields",
-	 *   input = "Acme\BlogBundle\Form\PageType",
+	 *   input = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
 	 *     412 = "Returned when the form has errors"
@@ -202,10 +203,11 @@ class EmployeeController extends Base\Controller {
 	 * @ApiDoc(
 	 *   resource = true,
 	 *   description = "Update exist employee by given ID, make sure to add Content-Type: application/x-www-form-urlencoded in your request header",
-	 *   input = "Acme\BlogBundle\Form\PageType",
+	 *   input = "App\ManagerBundle\Entities\Model\Employee",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     400 = "Returned when the form has errors"
+	 *     404 = "Returned when the employee ID given is not exists",
+	 *     412 = "Returned when the form has errors"
 	 *   }
 	 * )
 	 *

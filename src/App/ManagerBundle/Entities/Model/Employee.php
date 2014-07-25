@@ -5,6 +5,7 @@ namespace App\ManagerBundle\Entities\Model;
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * App\ManagerBundle\Entities\Model\Employee
@@ -12,6 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="employee")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
+ * @UniqueEntity("email")
+ * @UniqueEntity("phone")
  */
 class Employee extends Model
 {
@@ -25,12 +28,14 @@ class Employee extends Model
 
 	/**
 	 * @var string
+     * @Assert\NotBlank()
 	 * @ORM\Column(type="string", length=80)
 	 */
 	protected $first_name;
 
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=80)
      */
     protected $last_name;
@@ -52,12 +57,14 @@ class Employee extends Model
 
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=80)
      */
     protected $password;
 
     /**
      * @var integer
+     * @Assert\NotBlank()
      * @ORM\Column(type="integer")
      */
     protected $company_id;
@@ -70,6 +77,7 @@ class Employee extends Model
 
     /**
      * @var object
+     * @ORM\Column(type="datetime")
      */
     protected $modified;
 
