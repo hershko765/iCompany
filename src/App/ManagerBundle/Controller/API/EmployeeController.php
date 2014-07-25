@@ -141,14 +141,16 @@ class EmployeeController extends Base\Controller {
         try {
             return $handler->setOptions($filters, $paging, $settings)->execute();
         }
-        catch(\Exception $e)
+        catch(NotFoundHttpException $e)
         {
             $response = new Response();
-            $response->setStatusCode(412);
+            $response->setStatusCode(404);
             $response->send();
             return [
-                'code' => $e->getCode(),
-                'error' => $e->getMessage()
+                'error' => [
+                    'code' => 404,
+                    'message' => $e->getMessage()
+                ]
             ];
         }
 	}

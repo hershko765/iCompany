@@ -36,7 +36,7 @@ class Get extends HandlerManager implements Handler {
 		$Employee = $this->em->getRepository('AppManagerBundle:Model\Employee')->find($this->id);
 
 		if ( ! $Employee)
-			throw new NotFoundHttpException();
+			throw new NotFoundHttpException('Employee #'.$this->id.' Not Found');
 
 		return $Employee;
 	}
