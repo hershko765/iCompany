@@ -45,7 +45,7 @@ class Employee extends Model
 
     /**
      * @var integer
-     * @Assert\Type(type="integer", message="The value {{ value }} is not a valid {{ type }}.")
+     * @Assert\NotBlank()
      * @ORM\Column(type="integer")
      */
     protected $phone;
