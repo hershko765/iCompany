@@ -94,7 +94,21 @@ class EmployeeController extends Base\Controller {
 	{
 		$handler = $this->getHandler('Employee', 'get');
 
-		return $handler->setID($id)->execute();
+        try {
+            return $handler->setID($id)->execute();
+        }
+        catch(NotFoundHttpException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(404);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => 404,
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
 	}
 
 	/**
@@ -138,21 +152,7 @@ class EmployeeController extends Base\Controller {
 
 		$handler  = $this->getHandler('Employee', 'collect');
 
-        try {
-            return $handler->setOptions($filters, $paging, $settings)->execute();
-        }
-        catch(NotFoundHttpException $e)
-        {
-            $response = new Response();
-            $response->setStatusCode(404);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => 404,
-                    'message' => $e->getMessage()
-                ]
-            ];
-        }
+        return $handler->setOptions($filters, $paging, $settings)->execute();
 	}
 
 	/**
