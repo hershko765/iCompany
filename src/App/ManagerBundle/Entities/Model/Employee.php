@@ -70,7 +70,6 @@ class Employee extends Model
 
     /**
      * @var object
-     * @ORM\Column(type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
     protected $modified;
 
