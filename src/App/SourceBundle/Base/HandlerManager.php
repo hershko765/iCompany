@@ -16,7 +16,7 @@ abstract class HandlerManager implements Handler {
     const PERM_ADMIN  = 4;
 
     // Default permission required to load the handler
-    const REQUIRED_PERMISSION = self::PERM_MEMBER;
+    const REQUIRED_PERMISSION = self::PERM_ALL;
 
 	/**
 	 * @var HandlerGateway
