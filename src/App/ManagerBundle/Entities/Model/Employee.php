@@ -37,12 +37,15 @@ class Employee extends Model
 
     /**
      * @var string
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(type="string", length=80)
      */
     protected $email;
 
     /**
      * @var integer
+     * @Assert\Type(type="integer", message="The value {{ value }} is not a valid {{ type }}.")
      * @ORM\Column(type="integer")
      */
     protected $phone;
@@ -61,19 +64,19 @@ class Employee extends Model
 
     /**
      * @var object
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
     protected $created;
 
     /**
      * @var object
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
     protected $modified;
 
     /**
      * @var object
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $deleted;
 

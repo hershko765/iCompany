@@ -33,6 +33,9 @@
 # Drop Database
 	php app/console doctrine:database:drop --force
 
+# Update Database Map
+	php app/console doctrine:schema:update --force
+
 # Create Entity
 	php app/console doctrine:generate:entity
 

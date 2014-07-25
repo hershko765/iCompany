@@ -94,17 +94,11 @@ abstract class Repository extends Core {
 	 */
 	public function save($model)
 	{
+        $this->setAbilities($model);
+
 		$em = $this->getEntityManager();
 		$em->persist($model);
 		$em->flush();
-
-        if (in_array(self::MULTI_DB, $this->abilities))
-        {
-            $em = $this->getEntityManager();
-            $em->persist($model);
-            $em->flush();
-        }
-
 		return $model;
 	}
 
@@ -163,8 +157,8 @@ abstract class Repository extends Core {
 		if(in_array(self::CREATABLE, $this->abilities) && method_exists($model, 'setCreated'))
 			$model->setCreated(new DateTime());
 
-		if(in_array(self::UPDATABLE, $this->abilities) && method_exists($model, 'setUpdated'))
-			$model->setUpdated(new DateTime());
+		if(in_array(self::UPDATABLE, $this->abilities) && method_exists($model, 'setModified'))
+			$model->setModified(new DateTime());
 
 		if(in_array(self::SOFT_DELETABLE, $this->abilities) && method_exists($model, 'setDeleted'))
 			$model->setDeleted(new Datetime());

@@ -2,6 +2,7 @@
 namespace App\ManagerBundle\Entities\Repository;
 
 use App\SourceBundle\Base\Repository\Repository;
+use App\SourceBundle\Helpers\Arr;
 use Doctrine\ORM\QueryBuilder;
 
 class Employee extends Repository {
@@ -17,7 +18,10 @@ class Employee extends Repository {
 	 * @var array
 	 */
 	protected $filterMap = [
-        [ 'deleted', 'deleted', '=' ]
+        [ 'search', [ 'email', 'first_name', 'last_name' ], 'LIKE' ],
+        [ 'email', 'email', '=' ],
+        [ 'login', 'custom', 'custom' ],
+        [ 'deleted', 'deleted', '=' ],
     ];
 
 	/**
@@ -42,5 +46,19 @@ class Employee extends Repository {
 	 *
 	 * @var array
 	 */
-	protected $abilities = [ ];
+	protected $abilities = [ self::UPDATABLE, self::CREATABLE ];
+
+    protected function filterLogin(QueryBuilder $qb, $value)
+    {
+        $email    = Arr::get($value, 'email');
+        $password = Arr::get($value, 'password');
+
+        $qb->andWhere('entity.email = :email');
+        $qb->andWhere('entity.password = :password');
+        $qb->setParameters([
+           'email'    => $email,
+           'password' => $password
+        ]);
+
+    }
 }

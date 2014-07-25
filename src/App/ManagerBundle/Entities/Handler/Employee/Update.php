@@ -46,14 +46,15 @@ class Update extends HandlerManager implements Handler {
 		// Load model by id, throw exception if nothing found
 		$employee = $repo->find($this->id);
 		if ( ! $employee)
-			throw new NotFoundHttpException('Employee not found for id: '.$this->id);
+			throw new NotFoundHttpException('Employee ID #'.$this->id.' Not Found');
 
 		$repo->hydrate($this->data, $employee, Repository::PERM_UPDATE);
 
 		// Validate model, if errors found return them
 		$errors = $this->validate->validate($employee);
+        // Throw exception if error returned
 		if(count($errors) > 0)
-            throw new ValidationException($errors);
+            throw new ValidationException($this->errorsToArr($errors), 'Failed to Validate Request');
 
 		// Save model into the database and return response
 		return [

@@ -5,8 +5,10 @@ namespace App\ManagerBundle\Controller\API;
 use App\SourceBundle\Base;
 
 
+use App\SourceBundle\Exception\ValidationException;
 use App\SourceBundle\Helpers\Arr;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\Annotations;
@@ -24,13 +26,58 @@ use FOS\RestBundle\Controller\Annotations\Get;
 
 class EmployeeController extends Base\Controller {
 
+
+    /**
+     * Validate Employee Login.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Creates a new page from the submitted data.",
+     *   input = "Acme\BlogBundle\Form\PageType",
+     *   requirements={
+     *      {
+     *          "name"="email",
+     *          "dataType"="string",
+     *          "requirement"="3 chars",
+     *          "description"="employee email"
+     *      },
+     *      {
+     *          "name"="password",
+     *          "dataType"="string",
+     *          "requirement"="3 chars",
+     *          "description"="employee password"
+     *      }
+     * },
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     412 = "Returned when login failed",
+     *     428 = "Returned when parameters are missing"
+     *   }
+     * )
+     * @post("/login")
+     * @Annotations\View(templateVar="Broker")
+     * @param Request $request the request object
+     * @return array
+     */
+    public function validateLoginAction(Request $request)
+    {
+        // avivbenyair159@gmail.com
+        $post = $request->request->all();
+        // Gathering data and handler
+        $handler = $this->getHandler('Employee', 'Login');
+
+        return $handler
+            ->setCredentials([ 'email' => Arr::get($post, 'email'), 'password' => Arr::get($post, 'password') ])
+            ->execute();
+    }
+
 	/**
 	 * Get single Employee,
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
 	 *   description = "Get Single Employee",
-	 *   output = "Acme\BlogBundle\Entity\Page",
+	 *   output = "array",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
 	 *     404 = "Returned when the employee is not found"
@@ -38,9 +85,7 @@ class EmployeeController extends Base\Controller {
 	 * )
 	 *
 	 * @Annotations\View(templateVar="Employee")
-	 *
-	 * @param int     $id      the page id
-	 *
+	 * @param int $id employee id
 	 * @return array
 	 *
 	 * @throws NotFoundHttpException when page not exist
@@ -93,7 +138,19 @@ class EmployeeController extends Base\Controller {
 
 		$handler  = $this->getHandler('Employee', 'collect');
 
-        return $handler->setOptions($filters, $paging, $settings)->execute();
+        try {
+            return $handler->setOptions($filters, $paging, $settings)->execute();
+        }
+        catch(\Exception $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(412);
+            $response->send();
+            return [
+                'code' => $e->getCode(),
+                'error' => $e->getMessage()
+            ];
+        }
 	}
 
 	/**
@@ -105,14 +162,12 @@ class EmployeeController extends Base\Controller {
 	 *   input = "Acme\BlogBundle\Form\PageType",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
-	 *     413 = "Returned when the form has errors"
+	 *     412 = "Returned when the form has errors"
 	 *   }
 	 * )
 	 *
 	 * @Annotations\View(templateVar="Employee")
-	 *
 	 * @param Request $request the request object
-	 *
 	 * @return array
 	 */
 	public function postEmployeeAction(Request $request)
@@ -121,16 +176,30 @@ class EmployeeController extends Base\Controller {
 		$post = $request->request->all();
         $handler = $this->getHandler('Employee', 'Create');
 
-		return $handler->setData($post)->execute();
+        try {
+            return $handler->setData($post)->execute();
+        }
+        catch(ValidationException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(412);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => 412,
+                    'message' => $e->getMessage(),
+                    'validation' => $e->errors
+                ]
+            ];
+        }
 	}
 
-
 	/**
-	 * Create a Employee from the submitted data.
+	 * Update exist employee by given ID
 	 *
 	 * @ApiDoc(
 	 *   resource = true,
-	 *   description = "Creates a new page from the submitted data.",
+	 *   description = "Update exist employee by given ID, make sure to add Content-Type: application/x-www-form-urlencoded in your request header",
 	 *   input = "Acme\BlogBundle\Form\PageType",
 	 *   statusCodes = {
 	 *     200 = "Returned when successful",
@@ -148,6 +217,33 @@ class EmployeeController extends Base\Controller {
 		$post = $request->request->all();
 		$handler = $this->getHandler('Employee', 'Update');
 
-		return $handler->setData($post, $id)->execute();
+        try {
+            return $handler->setData($post, $id)->execute();
+        }
+        catch(ValidationException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(412);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => 412,
+                    'message' => $e->getMessage(),
+                    'validation' => $e->errors
+                ]
+            ];
+        }
+        catch(NotFoundHttpException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(404);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => 404,
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
 	}
 }
