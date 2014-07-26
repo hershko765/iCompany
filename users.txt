@@ -1,4 +1,4 @@
-// Employee
+// Employee - added 25/7/2014
 // -- id
 // -- first_name
 // -- last_name
@@ -23,18 +23,16 @@
 // -- modified
 // -- deleted
 ---------------------------------------
-// Department
+// Department - added 25/7/2014
 // -- id
 // -- name
 // -- title
 // -- description
-// -- title
-// -- title
 // -- created
 // -- modified
 // -- deleted
 ---------------------------------------
-// Employee Department
+// Employee Department - added 25/7/2014
 // -- employee_id
 // -- department_id
 ---------------------------------------
@@ -47,7 +45,7 @@
 // -- modified
 // -- deleted
 ---------------------------------------
-// Employee Permission
+// Employee Permission - added 25/7/2014
 // -- employee_id
 // -- department_id
 // -- entity_id
@@ -56,23 +54,24 @@
 // -- modified_by
 // -- created
 // -- modified
+// -- deleted
 ---------------------------------------
-// Employee Report
+// Employee_Report - added 25/7/2014
+// -- id - added 25/7/2014
+// -- employee_id - added 25/7/2014
 // -- start_date
 // -- end_date
-// -- start_date
-// -- start_date
 // -- created
 // -- modified
 // -- deleted
 ---------------------------------------
-// Handlers
+// Handlers - added 25/7/2014
 // -- id
 // -- entity_id
 // -- name
 // -- title
 ---------------------------------------
-// Entity
+// Entity - added 25/7/2014
 // -- id
 // -- name
 // -- title
