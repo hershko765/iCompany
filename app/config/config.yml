@@ -85,6 +85,10 @@ services:
     auth_user:
         class:        App\UserBundle\Security\Auth
         arguments: ['@handler_gateway']
+    kernel.listener.your_listener_name:
+        class: App\ManagerBundle\EventListener\AppExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
 
 sensio_framework_extra:
     view:
