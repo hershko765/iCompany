@@ -78,6 +78,7 @@ class EmployeeController extends Base\Controller {
         {
             $response = new Response();
             $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
+            $response->setContent('MY CONTENT');
             $response->send();
         }
         catch(PreconditionRequiredHttpException $e)
