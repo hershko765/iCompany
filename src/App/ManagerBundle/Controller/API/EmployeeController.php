@@ -22,6 +22,8 @@ use Symfony\Component\Form\FormTypeInterface;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
+use Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException;
+use Symfony\Component\HttpKernel\Exception\PreconditionRequiredHttpException;
 
 class EmployeeController extends Base\Controller {
 
@@ -66,10 +68,36 @@ class EmployeeController extends Base\Controller {
         // Gathering data and handler
         $handler = $this->getHandler('Employee', 'Login');
 
-        // Return response
-        return $handler
-            ->setCredentials([ 'email' => Arr::get($post, 'email'), 'password' => Arr::get($post, 'password') ])
-            ->execute();
+        try {
+            // Return response
+            return $handler
+                ->setCredentials([ 'email' => Arr::get($post, 'email'), 'password' => Arr::get($post, 'password') ])
+                ->execute();
+        }
+        catch(PreconditionFailedHttpException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => Response::HTTP_PRECONDITION_FAILED,
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
+        catch(PreconditionRequiredHttpException $e)
+        {
+            $response = new Response();
+            $response->setStatusCode(Response::HTTP_PRECONDITION_REQUIRED);
+            $response->send();
+            return [
+                'error' => [
+                    'code' => Response::HTTP_PRECONDITION_REQUIRED,
+                    'message' => $e->getMessage()
+                ]
+            ];
+        }
     }
 
 	/**
@@ -101,11 +129,11 @@ class EmployeeController extends Base\Controller {
         catch(NotFoundHttpException $e)
         {
             $response = new Response();
-            $response->setStatusCode(404);
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
             $response->send();
             return [
                 'error' => [
-                    'code' => 404,
+                    'code' => Response::HTTP_NOT_FOUND,
                     'message' => $e->getMessage()
                 ]
             ];
@@ -185,11 +213,11 @@ class EmployeeController extends Base\Controller {
         catch(ValidationException $e)
         {
             $response = new Response();
-            $response->setStatusCode(412);
+            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
             $response->send();
             return [
                 'error' => [
-                    'code' => 412,
+                    'code' => Response::HTTP_PRECONDITION_FAILED,
                     'message' => $e->getMessage(),
                     'validation' => $e->errors
                 ]
@@ -227,11 +255,11 @@ class EmployeeController extends Base\Controller {
         catch(ValidationException $e)
         {
             $response = new Response();
-            $response->setStatusCode(412);
+            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
             $response->send();
             return [
                 'error' => [
-                    'code' => 412,
+                    'code' => Response::HTTP_PRECONDITION_FAILED,
                     'message' => $e->getMessage(),
                     'validation' => $e->errors
                 ]
@@ -240,11 +268,11 @@ class EmployeeController extends Base\Controller {
         catch(NotFoundHttpException $e)
         {
             $response = new Response();
-            $response->setStatusCode(404);
+            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
             $response->send();
             return [
                 'error' => [
-                    'code' => 404,
+                    'code' => Response::HTTP_PRECONDITION_FAILED,
                     'message' => $e->getMessage()
                 ]
             ];

@@ -32,12 +32,15 @@ class Login extends HandlerManager {
 
 	protected function _execute()
 	{
-        if ( ! Arr::get($this->credentials, 'email') || ! Arr::get($this->credentials, 'password'))
-            throw new PreconditionRequiredHttpException();
+        if ( ! Arr::get($this->credentials, 'email'))
+            throw new PreconditionRequiredHttpException('Email Address required');
+
+        if (! Arr::get($this->credentials, 'password'))
+            throw new PreconditionRequiredHttpException('Password required');
 
 		$employee = $this->em->getRepository('AppManagerBundle:Model\Employee')->collect([ 'login' => $this->credentials ]);
 
-        if ( ! $employee) throw new PreconditionFailedHttpException;
+        if ( ! $employee) throw new PreconditionFailedHttpException('Failed to login user');
 
         return $employee;
 	}
