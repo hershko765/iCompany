@@ -9,6 +9,9 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Form\Exception\InvalidArgumentException;
 use App\SourceBundle\Base\HandlerManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
 class Controller extends FOSRestController {
 
 	/**
@@ -46,4 +49,25 @@ class Controller extends FOSRestController {
 
 		return $gateway->getHandler($entity, $handler, $bundle);
 	}
+
+    /**
+     * Create JSON response from exception
+     * error
+     *
+     * @param $code
+     * @param array $content
+     */
+    public function PipeException(\Exception $e, $additionalInfo = [])
+    {
+        $response = new JsonResponse();
+        $response->setStatusCode($e->getStatusCode());
+        $response->setContent(json_encode(array_merge([
+            'error' => [
+                'code' => $e->getStatusCode(),
+                'message' => $e->getMessage()
+            ]
+        ], $additionalInfo)));
+        $response->send();
+    }
+
 }

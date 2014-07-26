@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\Annotations;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 // Annotations dependency
 use FOS\RestBundle\Controller\FOSRestController;
@@ -74,24 +75,9 @@ class EmployeeController extends Base\Controller {
                 ->setCredentials([ 'email' => Arr::get($post, 'email'), 'password' => Arr::get($post, 'password') ])
                 ->execute();
         }
-        catch(PreconditionFailedHttpException $e)
+        catch(HttpException $e)
         {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
-            $response->setContent('MY CONTENT');
-            $response->send();
-        }
-        catch(PreconditionRequiredHttpException $e)
-        {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_PRECONDITION_REQUIRED);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => Response::HTTP_PRECONDITION_REQUIRED,
-                    'message' => $e->getMessage()
-                ]
-            ];
+            $this->PipeException($e);
         }
     }
 
@@ -121,17 +107,9 @@ class EmployeeController extends Base\Controller {
         try {
             return $handler->setID($id)->execute();
         }
-        catch(NotFoundHttpException $e)
+        catch(HttpException $e)
         {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_NOT_FOUND);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => Response::HTTP_NOT_FOUND,
-                    'message' => $e->getMessage()
-                ]
-            ];
+            $this->PipeException($e);
         }
 	}
 
@@ -207,16 +185,13 @@ class EmployeeController extends Base\Controller {
         }
         catch(ValidationException $e)
         {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => Response::HTTP_PRECONDITION_FAILED,
-                    'message' => $e->getMessage(),
-                    'validation' => $e->errors
-                ]
-            ];
+            $this->PipeException($e, [
+                'validation' => $e->errors
+            ]);
+        }
+        catch(HttpException $e)
+        {
+            $this->PipeException($e);
         }
 	}
 
@@ -249,28 +224,13 @@ class EmployeeController extends Base\Controller {
         }
         catch(ValidationException $e)
         {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => Response::HTTP_PRECONDITION_FAILED,
-                    'message' => $e->getMessage(),
-                    'validation' => $e->errors
-                ]
-            ];
+            $this->PipeException($e, [
+                'validation' => $e->errors
+            ]);
         }
-        catch(NotFoundHttpException $e)
+        catch(HttpException $e)
         {
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_PRECONDITION_FAILED);
-            $response->send();
-            return [
-                'error' => [
-                    'code' => Response::HTTP_PRECONDITION_FAILED,
-                    'message' => $e->getMessage()
-                ]
-            ];
+            $this->PipeException($e);
         }
 	}
 }
