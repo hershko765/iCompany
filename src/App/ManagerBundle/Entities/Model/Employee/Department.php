@@ -1,19 +1,19 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Model;
+namespace App\ManagerBundle\Entities\Model\Employee;
 
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * App\ManagerBundle\Entities\Model\EmployeeDepartment
+ * App\ManagerBundle\Entities\Model\Employee
  *
  * @ORM\Table(name="employee_department")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\EmployeeDepartment")
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
  */
-class EmployeeDepartment extends Model
+class Department extends Model
 {
     /**
      * @var integer
@@ -40,7 +40,7 @@ class EmployeeDepartment extends Model
      * Set employee_id
      *
      * @param integer $employeeId
-     * @return EmployeeDepartment
+     * @return Department
      */
     public function setEmployeeId($employeeId)
     {
@@ -63,7 +63,7 @@ class EmployeeDepartment extends Model
      * Set department_id
      *
      * @param integer $departmentId
-     * @return EmployeeDepartment
+     * @return Department
      */
     public function setDepartmentId($departmentId)
     {

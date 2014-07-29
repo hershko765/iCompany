@@ -61,6 +61,7 @@
 // -- employee_id - added 25/7/2014
 // -- start_date
 // -- end_date
+// -- total_day
 // -- created
 // -- modified
 // -- deleted

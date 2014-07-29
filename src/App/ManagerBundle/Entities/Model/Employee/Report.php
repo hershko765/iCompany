@@ -1,19 +1,19 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Model;
+namespace App\ManagerBundle\Entities\Model\Employee;
 
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * App\ManagerBundle\Entities\Model\EmployeeReport
+ * App\ManagerBundle\Entities\Model\Employee
  *
  * @ORM\Table(name="employee_report")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\EmployeeReport")
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
  */
-class EmployeeReport extends Model
+class Report extends Model
 {
     /**
      * @var integer
@@ -75,7 +75,7 @@ class EmployeeReport extends Model
      * Set employee_id
      *
      * @param integer $employeeId
-     * @return EmployeeReport
+     * @return Report
      */
     public function setEmployeeId($employeeId)
     {
@@ -98,7 +98,7 @@ class EmployeeReport extends Model
      * Set start_date
      *
      * @param \DateTime $startDate
-     * @return EmployeeReport
+     * @return Report
      */
     public function setStartDate($startDate)
     {
@@ -121,7 +121,7 @@ class EmployeeReport extends Model
      * Set end_date
      *
      * @param \DateTime $endDate
-     * @return EmployeeReport
+     * @return Report
      */
     public function setEndDate($endDate)
     {
@@ -144,7 +144,7 @@ class EmployeeReport extends Model
      * Set created
      *
      * @param \DateTime $created
-     * @return EmployeeReport
+     * @return Report
      */
     public function setCreated($created)
     {
@@ -167,7 +167,7 @@ class EmployeeReport extends Model
      * Set modified
      *
      * @param \DateTime $modified
-     * @return EmployeeReport
+     * @return Report
      */
     public function setModified($modified)
     {
@@ -190,7 +190,7 @@ class EmployeeReport extends Model
      * Set deleted
      *
      * @param \DateTime $deleted
-     * @return EmployeeReport
+     * @return Report
      */
     public function setDeleted($deleted)
     {

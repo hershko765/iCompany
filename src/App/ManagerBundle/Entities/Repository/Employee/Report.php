@@ -1,10 +1,10 @@
 <?php
-namespace App\ManagerBundle\Entities\Repository;
+namespace App\ManagerBundle\Entities\Repository\Employee;
 
 use App\SourceBundle\Base\Repository\Repository;
 use Doctrine\ORM\QueryBuilder;
 
-class EmployeeReport extends Repository {
+class Report extends Repository {
 
 	protected $tableName    = 'employee_report';
     protected $defaultOrder = 'ASC';

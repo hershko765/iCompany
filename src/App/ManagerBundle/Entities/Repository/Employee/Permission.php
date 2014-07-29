@@ -1,10 +1,10 @@
 <?php
-namespace App\ManagerBundle\Entities\Repository;
+namespace App\ManagerBundle\Entities\Repository\Employee;
 
 use App\SourceBundle\Base\Repository\Repository;
 use Doctrine\ORM\QueryBuilder;
 
-class EmployeePermission extends Repository {
+class Permission extends Repository {
 
 	protected $tableName    = 'employee_permission';
     protected $defaultOrder = 'ASC';

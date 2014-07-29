@@ -1,19 +1,19 @@
 <?php
 
-namespace App\ManagerBundle\Entities\Model;
+namespace App\ManagerBundle\Entities\Model\Employee;
 
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * App\ManagerBundle\Entities\Model\EmployeePermission
+ * App\ManagerBundle\Entities\Model\Employee
  *
  * @ORM\Table(name="employee_permission")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\EmployeePermission")
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
  */
-class EmployeePermission extends Model
+class Permission extends Model
 {
     /**
      * @var integer
@@ -86,7 +86,7 @@ class EmployeePermission extends Model
      * Set employee_id
      *
      * @param integer $employeeId
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setEmployeeId($employeeId)
     {
@@ -109,7 +109,7 @@ class EmployeePermission extends Model
      * Set department_id
      *
      * @param integer $departmentId
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setDepartmentId($departmentId)
     {
@@ -132,7 +132,7 @@ class EmployeePermission extends Model
      * Set entity_id
      *
      * @param integer $entityId
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setEntityId($entityId)
     {
@@ -155,7 +155,7 @@ class EmployeePermission extends Model
      * Set handlers
      *
      * @param string $handlers
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setHandlers($handlers)
     {
@@ -178,7 +178,7 @@ class EmployeePermission extends Model
      * Set created_by
      *
      * @param string $createdBy
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setCreatedBy($createdBy)
     {
@@ -201,7 +201,7 @@ class EmployeePermission extends Model
      * Set modified_by
      *
      * @param string $modifiedBy
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setModifiedBy($modifiedBy)
     {
@@ -224,7 +224,7 @@ class EmployeePermission extends Model
      * Set created
      *
      * @param \DateTime $created
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setCreated($created)
     {
@@ -247,7 +247,7 @@ class EmployeePermission extends Model
      * Set modified
      *
      * @param \DateTime $modified
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setModified($modified)
     {
@@ -270,7 +270,7 @@ class EmployeePermission extends Model
      * Set deleted
      *
      * @param \DateTime $deleted
-     * @return EmployeePermission
+     * @return Permission
      */
     public function setDeleted($deleted)
     {
