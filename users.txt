@@ -10,7 +10,7 @@
 // -- modified
 // -- deleted
 -------------------------------------
-// Employee Condition
+// Employee Condition -
 // -- id
 // -- employee id
 // -- field
@@ -36,7 +36,8 @@
 // -- employee_id
 // -- department_id
 ---------------------------------------
-// Company
+// Company - added 31/7/2014
+// -- id
 // -- name
 // -- title
 // -- logo
