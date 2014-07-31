@@ -7,13 +7,13 @@
  * @license    BSD
  * @link       http://www.sortex.co.il
  */
-define(['.','app'], function(Backbone, App){
+define(['backbone','app'], function(Backbone, App){
 
 	var Model = Backbone.Model.extend({
-		destroyCall: function(after){
+		destroy: function(after){
 			return this.destroy({
-				success: function(model, response){
-					if( after ) { after() }
+				complete: function(model, response){
+                    App.execute('call:fetched', model, response)
 				}
 			});
 		},

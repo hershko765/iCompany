@@ -29,20 +29,6 @@ class DefaultController extends Base\Controller
      */
     public function indexAction(Request $request)
     {
-        $employee = new Employee();
-
-        return [ ];
+        return [];
     }
-
-    /**
-     * @Route("/registration")
-     * @Template("ManagerBundle:Default:registration.html.twig")
-     */
-    public function registrationAction(Request $request, $page)
-    {
-        return [
-            'page' => $page,
-        ];
-    }
-
 }

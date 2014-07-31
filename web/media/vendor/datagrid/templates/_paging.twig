@@ -1,0 +1,52 @@
+<script type="text/html">
+    <div class="row datagrid-footer">
+        <div class="col-md-12 well">
+            <@ if(checkedColumn) { @>
+            <div class="col-md-2">
+                <div class="col-md-8">
+                    <select name="check-action" id="datagrid-checkable-action" class="form-control">
+                        <@ _.each(checkedListeners, function(val, idx){ @>
+                        <option value="{{ val.title }}" id="checkable_{{ val.title }}" data-trigger="{{ val.trigger }}">{{ val.title }} Selected</option>
+                        <@ }); @>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" id="datagrid-checkable-btn" class="btn btn-sm btn-primary pull-right">Save</button>
+                </div>
+            </div>
+            <@ } @>
+            <div class="<@ if(checkedColumn) { @> col-sm-5 <@ } else { @> col-sm-7 <@ } @>" >
+                <@ if(paging.length > 1) { @>
+                <ul class="pagination no-margin datagrid-paging" >
+                    <li class="<@ if( ! prevPage) { @> disabled <@ } @>" ><a href="#" <@ if(prevPage) { @> data-page="{{ prevPage }}" <@ } @> >&laquo;</a></li>
+                    <@ _.each(paging ,function(page){ @>
+                    <li>
+                        <a href="" class="<@ if(page == currentPage) { @> pagination-selected <@ } @> " data-page="{{ page }}">{{ page }}</a>
+                    </li>
+                    <@ }) @>
+                    <li class="<@ if( ! nextPage) { @> disabled <@ } @>" ><a href="#" <@ if(nextPage) { @> data-page="{{ nextPage }}" <@ } else { @> disabled="disabled" <@ } @> >&raquo;</a></li>
+                </ul>
+                <@ } else if( ! hasTotal) { @>
+                <ul class="pagination no-margin">
+                    <li class="<@ if( ! prevPage) { @> disabled <@ } @>" ><a href="#" <@ if(prevPage) { @> data-page="{{ prevPage }}" <@ } @> >&laquo;</a></li>
+                    <li class="<@ if( ! nextPage) { @> disabled <@ } @>" ><a href="#" <@ if(nextPage) { @> data-page="{{ nextPage }}" <@ } else { @> disabled="disabled" <@ } @> >&raquo;</a></li>
+                </ul>
+                <@ } @>
+            </div>
+            <div class="col-sm-5">
+                <button class="btn btn-primary btn-sm pull-right datagrid-render-click">Refresh List</button>
+                <div class="form-group pull-right" style="width: 100px; margin: 0; margin-right: 31px">
+                    <select name="per-page" id="per-page" class="form-control" style="height: 36px; margin: 0">
+                        <option <@ if(limit == '10') { @> selected="selected" <@ } @> value="10">10</option>
+                        <option <@ if(limit == '15') { @> selected="selected" <@ } @> value="15">15</option>
+                        <option <@ if(limit == '20') { @> selected="selected" <@ } @> value="20">20</option>
+                        <option <@ if(limit == '30') { @> selected="selected" <@ } @> value="30">30</option>
+                        <option <@ if(limit == '50') { @> selected="selected" <@ } @> value="50">50</option>
+                        <option <@ if(limit == '100') { @> selected="selected" <@ } @> value="100">100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</script>

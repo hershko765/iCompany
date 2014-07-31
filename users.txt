@@ -65,14 +65,13 @@
 // -- created
 // -- modified
 // -- deleted
----------------------------------------
-// Handlers - added 25/7/2014
-// -- id
-// -- entity_id
-// -- name
-// -- title
----------------------------------------
-// Entity - added 25/7/2014
+-------------------------------------
+// Permission
 // -- id
 // -- name
 // -- title
+// -- description
+// -- created
+// -- modified
+// -- deleted
+

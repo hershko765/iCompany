@@ -5,13 +5,15 @@ namespace App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * App\ManagerBundle\Entities\Model\Employee
  *
  * @ORM\Table(name="employee_permission")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
+ * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee\Permission")
  */
 class Permission extends Model
 {
@@ -22,10 +24,10 @@ class Permission extends Model
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
 	/**
-	 * @var integer
-	 * @ORM\Column(type="integer")
+     * @ManyToOne(targetEntity="App\ManagerBundle\Entities\Model\Employee")
+     * @JoinColumn(name="employee_id", referencedColumnName="id")
 	 */
 	protected $employee_id;
 
@@ -33,19 +35,13 @@ class Permission extends Model
      * @var integer
      * @ORM\Column(type="integer")
      */
+    protected $permission_id;
+
+    /**
+     * @ManyToOne(targetEntity="App\ManagerBundle\Entities\Model\Department")
+     * @JoinColumn(name="department_id", referencedColumnName="id")
+     */
     protected $department_id;
-
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    protected $entity_id;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", length=80)
-     */
-    protected $handlers;
 
     /**
      * @var string
@@ -76,11 +72,6 @@ class Permission extends Model
      * @ORM\Column(type="datetime")
      */
     protected $deleted;
-
-
-
-
-
 
     /**
      * Set employee_id
@@ -126,52 +117,6 @@ class Permission extends Model
     public function getDepartmentId()
     {
         return $this->department_id;
-    }
-
-    /**
-     * Set entity_id
-     *
-     * @param integer $entityId
-     * @return Permission
-     */
-    public function setEntityId($entityId)
-    {
-        $this->entity_id = $entityId;
-
-        return $this;
-    }
-
-    /**
-     * Get entity_id
-     *
-     * @return integer 
-     */
-    public function getEntityId()
-    {
-        return $this->entity_id;
-    }
-
-    /**
-     * Set handlers
-     *
-     * @param string $handlers
-     * @return Permission
-     */
-    public function setHandlers($handlers)
-    {
-        $this->handlers = $handlers;
-
-        return $this;
-    }
-
-    /**
-     * Get handlers
-     *
-     * @return string 
-     */
-    public function getHandlers()
-    {
-        return $this->handlers;
     }
 
     /**

@@ -1,0 +1,22 @@
+<script type="text/html" >
+    <@ if(checkedColumn) { @>
+    <td style="width: 53px">
+        <label style="margin-left: 24px; margin-top: -7px">
+            <input type="checkbox" class="ace datagrid-checkbox"  />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <@ } @>
+    <@ _.each(rawData, function(raw){ @>
+    <td data-id="{{ raw.name }}" >{{ raw.title }}</td>
+    <@ }); @>
+    <td>
+        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group action-buttons">
+            <@ _.each(actions, function(action){ @>
+            <a class="{{ action.type }} actionButton" href="#" data-trigger="{{ action.execute }}">
+                <i class="icon-{{ action.icon }} bigger-130"></i>
+            </a>
+            <@ }); @>
+        </div>
+    </td>
+</script>

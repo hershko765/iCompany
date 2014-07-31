@@ -1,0 +1,158 @@
+{"user_info": {
+    "FirstName": "James",
+    "LastName": "Hancock",
+    "email": "hancockj30@yahoo.com",
+    "password": "2nation47",
+    "prefix": "1",
+    "phoneNumber": "14196680972",
+    "botRegURL": "http:\/\/safetraderapp.binarybonus.net\/registration",
+    "server": {
+        "URI": {
+            "offsetID": "989",
+            "AffID": "3343",
+            "TID": "1028f13bb0ddf8d19cc204793f6592",
+            "product": "sta",
+            "broker": "PlatinumTrader",
+            "campaignId": "undefined",
+            "subCampaignID": "989_3343_1028f13bb0ddf8d19cc204793f6592"
+        },
+        "baseURL": "\/regforms_iframe\/general",
+        "flow_type": "1",
+        "lang_type": "EN",
+        "langList": {
+            "2": "AR",
+            "3": "EN",
+            "4": "HR",
+            "5": "IT"
+        },
+        "captcha": 0,
+        "langSupport": "0",
+        "QueryParams": {
+            "aff_sub1": "2653759913",
+            "aff_sub3": "",
+            "aff_sub4": "",
+            "aff_sub5": "gasherinc",
+            "email": "hancockj30@yahoo.com"
+        },
+        "productOverride": [],
+        "ProducutOptions": {
+            "action": "#",
+            "loginURL": "#",
+            "botDashboard": "#",
+            "inter_file": "#",
+            "target": "_top",
+            "randomBrokers": [],
+            "themeType": "match all",
+            "form": {
+                "botDashboard": "http:\/\/safetraderapp.com\/members\/system",
+                "inter_file": "http:\/\/safetraderapp.com\/members\/inter.php",
+                "loginURL": "http:\/\/safetraderapp.binarybonus.net\/login",
+                "action": "http:\/\/safetraderapp.binarybonus.net\/registration",
+                "target": "_blank"
+            }
+        },
+        "blackList": ["spotfn"],
+        "userGEO": {
+            "country": "United States",
+            "phone_prefix": "+1",
+            "iso": "US"
+        }
+    }
+}, "URI": {
+    "offsetID": "989",
+    "AffID": "3343",
+    "TID": "1028f13bb0ddf8d19cc204793f6592",
+    "product": "sta",
+    "broker": "PlatinumTrader",
+    "campaignId": "undefined",
+    "subCampaignID": "989_3343_1028f13bb0ddf8d19cc204793f6592"
+}, "userGEO": {
+    "country": "United States",
+    "iso": "US",
+    "phone_prefix": "+1"
+}, "botRegURL": "http:\/\/safetraderapp.binarybonus.net\/registration", "broker": {
+    "id": 51,
+    "name": "PlatinumTrader",
+    "display_name": "Platinum Trader",
+    "reg_url": "http:\/\/platinumtrader.com\/open-account\/",
+    "login_url": "http:\/\/platinumtrader.com\/platinumtradersignin.php",
+    "redirect_param": "extRedir",
+    "thanku_url": "http:\/\/platinumtrader.com\/open-account\/thank-you\/",
+    "deposit_url": "http:\/\/platinumtrader.com\/my-account\/deposit\/",
+    "regulated": 0,
+    "captcha": 0,
+    "limit_ip": 0,
+    "bottom_injects": "",
+    "comments": "",
+    "api_username": "BOA_platinumTrader",
+    "api_password": "53b2ba031e7af",
+    "api_url": "http:\/\/api-spotplatform.platinumtrader.com\/Api",
+    "logo_link": "http:\/\/binarypromos.com\/regforms_iframe\/general\/media\/images\/brokers\/PlatinumTrader.png",
+    "home_url": "http:\/\/platinumtrader.com",
+    "token": "",
+    "trade_url": "http:\/\/platinumtrader.com\/binary-options-trading-floor\/",
+    "campaign_id": 26,
+    "active": 1,
+    "streamer_url": "http:\/\/217.68.24.134",
+    "spotoption_broker_name": "PlatinumTrader",
+    "regulated_status": ""
+}, "product": {
+    "id": 32,
+    "name": "sta",
+    "display_name": "Safe Trader App",
+    "link": "http:\/\/safetraderapp.com",
+    "reg_method": "botRegistration",
+    "login_method": "60scaSetup",
+    "design": "staCSS",
+    "bottom_injects": "make_customerInject, staSetup",
+    "captcha": 1,
+    "product_type": "BotTradingDefault",
+    "description": "989  ----  Safe Trader App --- Auto Trading",
+    "lang_support": 0,
+    "flow_type": 1,
+    "default_lang": "EN"
+}, "currency": "USD", "reqres": {
+    "request": {
+        "SpotAPI": {
+            "api_url": "http:\/\/api-spotplatform.platinumtrader.com\/Api",
+            "api_username": "BOA_platinumTrader",
+            "api_password": "53b2ba031e7af",
+            "MODULE": "Customer",
+            "COMMAND": "add",
+            "FirstName": "James",
+            "LastName": "Hancock",
+            "email": "hancockj30@yahoo.com",
+            "password": "2nation47",
+            "prefix": "1",
+            "Phone": "14196680972",
+            "birthday": "1970-01-01",
+            "gender": "male",
+            "Country": "226",
+            "currency": "USD",
+            "terms": "on",
+            "pageLanguage": "en",
+            "campaignId": "undefined",
+            "subCampaign": "989_3343_1028f13bb0ddf8d19cc204793f6592",
+            "a_aid": 0,
+            "b_bid": 0,
+            "c_cid": 0,
+            "contactByCoach": null,
+            "sendEmail": "true",
+            "url": "http:\/\/api-spotplatform.platinumtrader.com\/Api"
+        }
+    },
+    "response": {
+        "SpotAPI": {
+            "connection_status": "successful",
+            "operation_status": "failed",
+            "0": "invalidCampaignId",
+            "1": "emailAlreadyExists"
+        }
+    }
+}, "error": "\"invalidCampaignId\"", "userAgent": {
+    "IOS": "Win32",
+    "BrowserName": "Mozilla",
+    "cookieEnabled": true,
+    "userAgent": "Mozilla\/5.0 (Windows NT 6.1; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/35.0.1916.153 Safari\/537.36",
+    "browserLang": "en-US"
+}}

@@ -5,11 +5,14 @@ namespace App\ManagerBundle\Entities\Model\Employee;
 use App\SourceBundle\Base\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * App\ManagerBundle\Entities\Model\Employee
  *
- * @ORM\Table(name="employee_department")
+ * @ORM\Table(name="employee_department",uniqueConstraints={@UniqueConstraint(name="employee_department", columns={"employee_id", "department_id"})})
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="App\ManagerBundle\Entities\Repository\Employee")
  */
@@ -22,16 +25,18 @@ class Department extends Model
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ManyToOne(targetEntity="App\ManagerBundle\Entities\Model\Employee")
+     * @JoinColumn(name="employee_id", referencedColumnName="id")
      */
 	protected $employee_id;
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ManyToOne(targetEntity="App\ManagerBundle\Entities\Model\Department")
+     * @JoinColumn(name="department_id", referencedColumnName="id")
      */
     protected $department_id;
 

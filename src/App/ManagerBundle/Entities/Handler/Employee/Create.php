@@ -46,6 +46,7 @@ class Create extends HandlerManager implements Handler {
 
 		// Validate model, check for errors and return them if exists
 		$errors = $this->validate->validate($employee);
+
 		if(count($errors) > 0)
             throw new ValidationException($this->errorsToArr($errors), 'Failed to Validate Request');
 

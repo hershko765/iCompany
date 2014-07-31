@@ -4,3 +4,10 @@ employee_controller:
     prefix: /v1
     resource: "App\ManagerBundle\Controller\API\\EmployeeController"
     name_prefix:  api_1_
+
+department_controller:
+    type: rest
+    prefix: /v1
+    resource: "App\ManagerBundle\Controller\API\\DepartmentController"
+    name_prefix:  api_1_
+

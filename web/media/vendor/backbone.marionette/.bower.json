@@ -1,0 +1,177 @@
+{"click_id": null, "user_info": {
+    "FirstName": "12jaklwje12klejkl@walla.com",
+    "LastName": "12jaklwje12klejkl@walla.com",
+    "email": "12jaklwje12klejkl@walla.com",
+    "password": "12jaklwje12klejkl@walla.com",
+    "prefix": "972",
+    "phoneNumber": "9722131213",
+    "botRegURL": "http:\/\/100in60.binarybonus.net\/registration",
+    "server": {
+        "URI": {
+            "offsetID": "907",
+            "AffID": "3169",
+            "TID": "1020b9caec9e2752ac19f375f8af2c",
+            "product": "100ins",
+            "broker": "tradeworld",
+            "campaignId": "97",
+            "subCampaignID": "907_3169_1020b9caec9e2752ac19f375f8af2c"
+        },
+        "baseURL": "\/regforms_iframe\/general",
+        "flow_type": "1",
+        "lang_type": "EN",
+        "langList": {
+            "2": "AR",
+            "3": "EN",
+            "4": "HR",
+            "5": "IT",
+            "6": "PR"
+        },
+        "captcha": 0,
+        "langSupport": "0",
+        "QueryParams": {
+            "aff_sub1": "",
+            "aff_sub3": "",
+            "aff_sub4": "",
+            "aff_sub5": "app",
+            "email": "12jaklwje12klejkl@walla.com"
+        },
+        "productOverride": [],
+        "ThemeType": "light",
+        "ProducutOptions": {
+            "action": "#",
+            "loginURL": "#",
+            "botDashboard": "#",
+            "inter_file": "#",
+            "target": "_top",
+            "randomBrokers": [],
+            "themeType": "match all",
+            "form": {
+                "strategy": "7",
+                "botDashboard": "http:\/\/100in60.com\/members\/system\/",
+                "inter_file": "http:\/\/www.100in60.com\/members\/inter.php",
+                "loginURL": "http:\/\/100in60.binarybonus.net\/login",
+                "action": "http:\/\/100in60.binarybonus.net\/registration",
+                "submittionFlow": "StairsPopup",
+                "target": "_blank"
+            }
+        },
+        "blackList": [],
+        "userGEO": {
+            "country": "Israel",
+            "phone_prefix": "+972",
+            "iso": "IL"
+        }
+    }
+}, "URI": {
+    "offsetID": "907",
+    "AffID": "3169",
+    "TID": "1020b9caec9e2752ac19f375f8af2c",
+    "product": "100ins",
+    "broker": "tradeworld",
+    "campaignId": "97",
+    "subCampaignID": "907_3169_1020b9caec9e2752ac19f375f8af2c"
+}, "userGEO": {
+    "country": "Israel",
+    "iso": "IL",
+    "phone_prefix": "+972"
+}, "botRegURL": "http:\/\/100in60.binarybonus.net\/registration", "broker": {
+    "id": 71,
+    "name": "tradeworld",
+    "employee_id": null,
+    "display_name": "Trade World",
+    "reg_url": "https:\/\/www.traderworld.com\/openaccount",
+    "login_url": "http:\/\/mvc.traderworld.com\/traderworldsignin",
+    "redirect_param": "extRedir",
+    "thanku_url": "",
+    "deposit_url": "https:\/\/www.traderworld.com\/myaccount\/banking?tab=depositForm",
+    "regulated": 0,
+    "captcha": 0,
+    "limit_ip": 0,
+    "bottom_injects": "",
+    "comments": "",
+    "api_username": "BOA_optionsmaker",
+    "api_password": "53cd2eee26618",
+    "api_url": "https:\/\/www.api.traderworld.com\/Api",
+    "logo_link": "http:\/\/binarypromos.com\/regforms_iframe\/general\/media\/images\/brokers\/light\/tradeworld.png",
+    "home_url": "https:\/\/www.traderworld.com",
+    "token": "",
+    "trade_url": "https:\/\/www.traderworld.com\/platform",
+    "campaign_id": 97,
+    "active": 1,
+    "streamer_url": "https:\/\/sst5-a-nl.spotoption.com:443",
+    "spotoption_broker_name": "tradeworld",
+    "regulated_status": ""
+}, "product_settings": {
+    "action": "#",
+    "loginURL": "#",
+    "botDashboard": "#",
+    "inter_file": "#",
+    "target": "_top",
+    "randomBrokers": [],
+    "themeType": "match all",
+    "form": {
+        "strategy": "7",
+        "botDashboard": "http:\/\/100in60.com\/members\/system\/",
+        "inter_file": "http:\/\/www.100in60.com\/members\/inter.php",
+        "loginURL": "http:\/\/100in60.binarybonus.net\/login",
+        "action": "http:\/\/100in60.binarybonus.net\/registration",
+        "submittionFlow": "StairsPopup",
+        "target": "_blank"
+    }
+}, "product": {
+    "id": 16,
+    "name": "100ins",
+    "display_name": "100 In 60 ",
+    "link": "www.100in60.com",
+    "reg_method": "botRegistration",
+    "login_method": "",
+    "design": "100insCSS",
+    "bottom_injects": "100insSetup, make_customerInject",
+    "captcha": 1,
+    "product_type": "BotTradingDefault",
+    "description": "907 ---- 100 in 60 seconds app - auto trading",
+    "lang_support": 0,
+    "flow_type": 1,
+    "default_lang": "EN"
+}, "currency": "USD", "reqres": {
+    "request": {
+        "SpotAPI": {
+            "api_url": "https:\/\/www.api.traderworld.com\/Api",
+            "api_username": "BOA_optionsmaker",
+            "api_password": "53cd2eee26618",
+            "MODULE": "Customer",
+            "COMMAND": "add",
+            "FirstName": "12jaklwje12klejkl@walla.com",
+            "LastName": "12jaklwje12klejkl@walla.com",
+            "email": "12jaklwje12klejkl@walla.com",
+            "password": "12jaklwje12klejkl@walla.com",
+            "prefix": "972",
+            "Phone": "9722131213",
+            "birthday": "1970-01-01",
+            "gender": "male",
+            "Country": "104",
+            "currency": "USD",
+            "terms": "on",
+            "pageLanguage": "en",
+            "campaignId": "97",
+            "subCampaign": "907_3169_1020b9caec9e2752ac19f375f8af2c",
+            "a_aid": 0,
+            "b_bid": 0,
+            "c_cid": 0,
+            "contactByCoach": null,
+            "sendEmail": "true",
+            "url": "https:\/\/www.api.traderworld.com\/Api"
+        }
+    },
+    "response": {
+        "SpotAPI": {
+            "response": false
+        }
+    }
+}, "error": "\"CONNECTION_ERROR\"", "userAgent": {
+    "IOS": "Win32",
+    "BrowserName": "Mozilla",
+    "cookieEnabled": true,
+    "userAgent": "Mozilla\/5.0 (Windows NT 6.1; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/36.0.1985.125 Safari\/537.36",
+    "browserLang": "he"
+}}

@@ -1,14 +1,4 @@
 {% extends "ManagerBundle::Layout/layout.html.twig" %}
 {% block content %}
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script>
-        $.ajax({
-            url: '/api/v1/employees/3',
-            type: 'PUT',
-            data: {
-                email: 'asdsd@asdad.com'
-            }
-        });
 
-    </script>
 {% endblock %}
