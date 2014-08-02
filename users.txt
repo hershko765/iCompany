@@ -10,15 +10,14 @@
 // -- modified
 // -- deleted
 -------------------------------------
-// Employee Condition -
+// Employee Condition - added 1/8/2014
 // -- id
 // -- employee id
 // -- field
 // -- payment_type
-// -- monthly_hours
+// -- month_hours
 // -- summed_hours
 // -- average_hours
-// -- employee_id
 // -- created
 // -- modified
 // -- deleted
@@ -67,7 +66,7 @@
 // -- modified
 // -- deleted
 -------------------------------------
-// Permission
+// Permission - added 8/2/2014
 // -- id
 // -- name
 // -- title
