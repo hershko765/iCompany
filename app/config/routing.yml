@@ -11,3 +11,7 @@ NelmioApiDocBundle:
 default_manager:
     resource: "@ManagerBundle/Controller/DefaultController.php"
     type:     annotation
+
+default_doc:
+    resource: "@DocBundle/Controller/DefaultController.php"
+    type:     annotation

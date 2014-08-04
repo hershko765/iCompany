@@ -2,11 +2,8 @@
   "name": "backbone.marionette",
   "description": "Make your Backbone.js apps dance with a composite application architecture!",
   "homepage": "http://marionettejs.org",
-  "main": [
-    "./lib/backbone.marionette.js",
-    "./lib/core/amd/backbone.marionette.js"
-  ],
-  "version": "1.8.5",
+  "main": "./lib/core/backbone.marionette.js",
+  "version": "2.1.0",
   "keywords": [
     "backbone",
     "framework",
@@ -32,7 +29,8 @@
     "CONTRIBUTING.md",
     "package.json",
     "addrem",
-    "getdeps"
+    "getdeps",
+    "tmp"
   ],
   "dependencies": {
     "backbone": "1.0.0 - 1.1.2",

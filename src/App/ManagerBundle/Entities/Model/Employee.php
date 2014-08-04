@@ -51,7 +51,7 @@ class Employee extends Model
     /**
      * @var integer
      * @Assert\NotBlank()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=80)
      */
     protected $phone;
 
@@ -71,13 +71,13 @@ class Employee extends Model
 
     /**
      * @var object
-     * @ORM\Column(type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     protected $created;
 
     /**
      * @var object
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     protected $modified;
 

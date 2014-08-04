@@ -1,0 +1,36 @@
+.cogwheel-container img {
+  position: absolute;
+  -webkit-transition: -webkit-transform 1s ease-out;
+}
+
+.cogwheel-container .smaller {
+
+}
+
+.cogwheel-container .container {
+  position: relative;
+  margin: 50px;
+}
+
+.cogwheel-container .loading {
+  position: absolute;
+  z-index: 999;
+  top: 4px;
+  left: 74px;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: arial;
+  color: navy;
+}
+
+.cogwheel-container {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 84px;
+  height: 54px;
+}

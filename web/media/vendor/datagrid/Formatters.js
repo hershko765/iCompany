@@ -1,7 +1,7 @@
 /**
  * Data Grid Formatters
  */
-define([], function(){
+define(['moment'], function(){
     var Formatters = {};
 
     /**
@@ -35,6 +35,14 @@ define([], function(){
         }
     };
 
+    /**
+     * Auto select value by given array
+     * in the following format - { val : title }
+     * @param arr
+     * @param def
+     * @returns {Function}
+     * @constructor
+     */
     Formatters.Translation = function(arr, def) {
         return function(val) {
             var chosenVal = def;
@@ -46,6 +54,20 @@ define([], function(){
             });
 
             return chosenVal;
+        }
+    };
+
+    /**
+     * Format a date by given format
+     * formats should be given as MomentJS library
+     * see link below
+     * @link http://momentjs.com/
+     * @param format
+     * @returns {Function}
+     */
+    Formatters.date = function(format) {
+        return function(val) {
+           return moment(val).format(format);
         }
     };
 

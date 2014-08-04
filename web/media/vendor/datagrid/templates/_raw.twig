@@ -12,11 +12,11 @@
     <@ }); @>
     <td>
         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group action-buttons">
+            <div class="btn-group">
             <@ _.each(actions, function(action){ @>
-            <a class="{{ action.type }} actionButton" href="#" data-trigger="{{ action.execute }}">
-                <i class="icon-{{ action.icon }} bigger-130"></i>
-            </a>
+                <button type="button" data-trigger="{{ action.execute }}" class="btn btn-{{ action.type }} btn-sm actionButton"><span class="fa fa-{{ action.icon }}"></span></button>
             <@ }); @>
+            </div>
         </div>
     </td>
 </script>

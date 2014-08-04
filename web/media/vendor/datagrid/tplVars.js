@@ -20,9 +20,6 @@ define([], function(){
 		};
 	};
 
-	tplVars.rawData = function(obj) {
-
-	};
-
+	tplVars.rawData = function(obj) { };
 	return tplVars;
 });

@@ -6,12 +6,13 @@ define([
 	'collection',
 	'model'
 ], function(App, Collection, Model){
-    return false;
-
 	var Employee = {};
 
 	Employee.Model = Model.extend({
-		urlRoot: '/api/v1/employees'
+		urlRoot: '/api/v1/employees',
+        defaults: {
+            first_name: null
+        }
 	});
 
 	Employee.Collection = Collection.extend({
@@ -25,14 +26,19 @@ define([
         },
 		getEmployee: function(id) {
 			var entity = new Employee.Model({ id: id });
-			entity.fetchCall(callback);
+			entity.fetch();
+            return entity;
 		},
 
 		getEmployees: function(options) {
             options = options || {};
 			var entities = new Employee.Collection();
 			return entities.fetch(options);
-		}
+		},
+
+        getEmptyEmployee: function() {
+            return new Employee.Model;
+        }
 	};
 
 

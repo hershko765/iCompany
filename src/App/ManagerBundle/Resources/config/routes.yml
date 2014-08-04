@@ -10,4 +10,3 @@ department_controller:
     prefix: /v1
     resource: "App\ManagerBundle\Controller\API\\DepartmentController"
     name_prefix:  api_1_
-

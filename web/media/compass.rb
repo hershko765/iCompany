@@ -7,7 +7,7 @@ javascripts_dir = "js/"
 line_comments = false
 output_style = :compressed
 
-#add_import_path ""
+add_import_path "vendor/bootstrap-sass/stylesheets"
 # Enable Debugging (Line Comments, FireSass)
 # Invoke from command line: compass watch -e development --force -c compass.rb -> FROM admin folder
 if environment == :development

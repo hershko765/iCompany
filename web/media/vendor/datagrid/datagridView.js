@@ -9,15 +9,16 @@ define([
 	'text!/media/vendor/datagrid/templates/_paging.twig'
 ], function(App, _, Backbone, Marionette, TplLayout, TplTable, TplRaw, TplPaging){
 	var InjectView = {};
-	InjectView.InjectLayout = Marionette.Layout.extend({
+	InjectView.InjectLayout = Marionette.LayoutView.extend({
 		template: TplLayout,
 		regions: {
 			gridRegion: '#grid-region',
-			pagingRegion: '#paging-region'
+			pagingRegion: '#paging-region',
+            loaderRegion: '#loader-region'
 		}
 	});
 
-	InjectView.RawView = Marionette.Layout.extend({
+	InjectView.RawView = Marionette.LayoutView.extend({
 		template: TplRaw,
 		tagName: 'tr',
 		onRender: function() {
@@ -82,8 +83,8 @@ define([
 
 	InjectView.ContainerView = Marionette.CompositeView.extend({
 		template: TplTable,
-		itemViewContainer: 'tbody',
-		itemView: InjectView.RawView,
+        childViewContainer: 'tbody',
+        childView: InjectView.RawView,
         events: {
             'click .sort-header': function(e) {
                 var $target = $(e.currentTarget);
@@ -99,7 +100,7 @@ define([
                 : $checkboxes.parents('tr').not('.datagrid-thead').removeClass('warning')
             }
         },
-		itemViewOptions: function() {
+        childViewOptions: function() {
 			return { config: this.options.itemViewVars }
 		}
 	});

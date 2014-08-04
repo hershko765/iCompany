@@ -3,13 +3,14 @@ define([
 	'underscore',
 	'backbone',
 	'marionette',
-	'../vendor/datagrid/datagridView',
-	'../vendor/datagrid/tplVars',
-	'../vendor/datagrid/mergeRecursive',
-	'../vendor/datagrid/datagridEntity',
-	'../vendor/datagrid/config',
-    '../vendor/datagrid/Formatters'
-], function(App, _, Backbone, Marionette, InjectView, tplVars, merge, Entity, config, Formatters){
+	'../../vendor/datagrid/datagridView',
+	'../../vendor/datagrid/tplVars',
+	'../../vendor/datagrid/mergeRecursive',
+	'../../vendor/datagrid/datagridEntity',
+	'../../vendor/datagrid/config',
+    '../../vendor/datagrid/Formatters',
+    '../../vendor/cogLoader/loader'
+], function(App, _, Backbone, Marionette, InjectView, tplVars, merge, Entity, config, Formatters, CogLoader){
 
 	var Inject = Marionette.Controller.extend({
 		initialize: function(options) {
@@ -18,15 +19,13 @@ define([
 			this.region = region = options[0];
 			this.options = options[1];
 			this.injectLayout = injectLayout = new InjectView.InjectLayout({});
-			this.filters = $.extend((options[1].filters || {}), {
-				order: this.options.order || 'id'
-			});
+			this.filters = options[1].filters || {};
 
             this.p.currentPage = this.filters.page ? this.filters.page[0] || 1 : 1;
             injectLayout.on('show', function() {
-				_this.showGrid(injectLayout, _this.options);
+                _this.cogLoader = new CogLoader({ region: injectLayout.loaderRegion, smallerWidth: 60, biggerWidth: 100});
+                _this.showGrid(injectLayout, _this.options);
 			});
-
 			region.show(injectLayout);
 		},
 
@@ -34,14 +33,14 @@ define([
 			var _this = this, injectTable;
 			this.inejctTable = injectTable = new InjectView.ContainerView({
 				templateHelpers: function() {
-					return $.extend({
+                    return $.extend({
                         checkedColumn: options.checkedColumn
                     }, tplVars.containerVars(options))
 				},
 				itemViewVars: options
 			});
 
-			this.listenTo(injectTable, 'itemview:action:button:clicked', function(model, trigger){
+			this.listenTo(injectTable, 'childview:action:button:clicked', function(model, trigger){
 				this.injectLayout.trigger(trigger, model);
 			});
 
@@ -55,7 +54,6 @@ define([
 				});
 
                 _this.listenTo(injectTable, 'sort:table:clicked', function(col){
-                    console.log(_this.filters.sort);
                     _this.renderRaws({
                         sort: col,
                         order: _this.filters.sort == col ? (_this.filters.order == 'DESC' ? 'ASC' : 'DESC') : 'DESC'
@@ -75,12 +73,12 @@ define([
             options.get_total = true;
             options = $.extend((this.filters || {}), options);
             this.filters = options;
-			_this.inejctTable.$el.find('.datagrid-loader').css('height', _this.inejctTable.$el.find('table').outerHeight() - 30 ).show();
+            this.cogLoader.start();
             this.p.currentPage = options.page ? options.page[0] || 1 : 1;
 			this.collection.fetchList((options || {}), function(c, r){
 				_this.inejctTable.collection = _this.collection;
 				_this.inejctTable.render();
-				_this.inejctTable.$el.find('.datagrid-loader').hide();
+                _this.cogLoader.stop();
 				_this.renderPages(r.total);
 			});
 		},
