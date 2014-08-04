@@ -25,6 +25,14 @@ abstract class HandlerManager implements Handler {
 	protected $handlerGateway;
 
     /**
+     * Used to force an handler not
+     * to apply permissions
+     *
+     * @var bool
+     */
+    protected $forceHandler = FALSE;
+
+    /**
      * @var Request
      * @DI(alias=request)
      */
@@ -64,6 +72,15 @@ abstract class HandlerManager implements Handler {
 	{
 		return $this->handlerGateway;
 	}
+
+    /**
+     * Force the handler to execute
+     * without permissions
+     */
+    public function forceHandler()
+    {
+        $this->forceHandler = TRUE;
+    }
 
 	/**
 	 * Shortcut for loading handler
@@ -161,13 +178,11 @@ abstract class HandlerManager implements Handler {
     public function execute()
     {
         // Update permissions
-        $this->trackPermission();
+        if ( ! $this->forceHandler) $this->trackPermission();
 
         // Check permissions
-        if ($this->permission_code < static::REQUIRED_PERMISSION)
-        {
+        if ($this->permission_code < static::REQUIRED_PERMISSION && ! $this->forceHandler)
             throw new ValidationException('Invalid Permissions');
-        }
 
         // Continue with the flow
         return $this->_execute();

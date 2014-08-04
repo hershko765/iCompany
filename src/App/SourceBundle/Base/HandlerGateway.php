@@ -11,8 +11,6 @@ use App\SourceBundle\Base\HandlerManager;
 
 class HandlerGateway {
 
-    private $permission_code;
-
 	/**
 	 * @var \Symfony\Component\DependencyInjection\ContainerBuilder
 	 */
@@ -34,7 +32,7 @@ class HandlerGateway {
 	 * @throws Exception
 	 * @return HandlerManager object
 	 */
-	public function getHandler($entity, $handler, $bundle = FALSE)
+	public function getHandler($entity, $handler, $bundle = FALSE, $force = FALSE)
 	{
 		// Creating class alias for handler container
 		$handler_alias = strtolower($bundle).'_'.strtolower($entity).'_'.strtolower($handler);
@@ -57,10 +55,12 @@ class HandlerGateway {
              */
             $handler = $this->handler_container->get($handler_alias);
 
+            if ($force) $handler->forceHandler();
+
             return $handler;
         }
-        echo $handler_class;
-		throw new Exception('Handler class not found!');
+
+		throw new Exception('Handler class not found: '.$handler_class);
 	}
 
 	/**
